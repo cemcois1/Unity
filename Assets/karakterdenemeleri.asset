@@ -9,6 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5651b3155f963264186bc56322e6e6ac, type: 3}
-  m_Name: Tile
+  m_Script: {fileID: 11500000, guid: 57afd34aed7e10b4b949a52234063ee8, type: 3}
+  m_Name: karakterdenemeleri
   m_EditorClassIdentifier: 
+  health: 0
