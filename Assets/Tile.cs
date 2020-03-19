@@ -2,6 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum TileObject { 
+    Cover,
+    Character,
+    Null
+}
+
 public struct inTile { 
     public Cover cover;
     public Character chracter;
@@ -27,6 +33,16 @@ public class Tile : ScriptableObject
         return false;
     }
 
+    public TileObject whatInTile() {
+        if (whatsInTile.chracter != null)
+            return TileObject.Character;
+
+        if (whatsInTile.cover != null)
+            return TileObject.Cover;
+
+        return TileObject.Null; 
+    }
+
     public bool isItReachable() {
         return this.isReachable;
     }
@@ -47,6 +63,25 @@ public class Tile : ScriptableObject
         return true;
     }
 
-    public Cover getInTile(  )
+    public T getInTile<T>() {
+        if (typeof(T) == typeof(Cover))
+            return this.whatsInTile.cover;
+
+        else if (typeof(T) == typeof(Chracter))
+            return this.whatsInTile.chracter;
+
+        throw new System.InvalidOperationException();
+    }
+
+    public T getInTileWithRemove<T>() {
+        if (typeof(T) == typeof(Cover))
+            Cover retCov = Cover.CopyTothis.whatsInTile.cover;
+            return this.whatsInTile.cover;
+
+        else if (typeof(T) == typeof(Chracter))
+            return this.whatsInTile.chracter;
+
+        throw new System.InvalidOperationException();
+    }
 
 }
