@@ -10,13 +10,14 @@ public enum TileObject {
 
 public struct inTile { 
     public Cover cover;
-    public Character chracter;
+    public Character character;
 }
-
+[CreateAssetMenu(fileName = "deneme", menuName = "deneme2")]
 public class Tile : ScriptableObject
 {
     private bool isReachable;
     private inTile whatsInTile;
+
 
     public Tile(bool isReachable, inTile intile = new inTile()){
         this.isReachable = isReachable;
@@ -24,7 +25,7 @@ public class Tile : ScriptableObject
     }
 
     public bool isTileFull() {
-        if (whatsInTile.chracter != null)
+        if (whatsInTile.character != null)
             return true;
 
         if (whatsInTile.cover != null)
@@ -34,7 +35,7 @@ public class Tile : ScriptableObject
     }
 
     public TileObject whatInTile() {
-        if (whatsInTile.chracter != null)
+        if (whatsInTile.character != null)
             return TileObject.Character;
 
         if (whatsInTile.cover != null)
@@ -59,29 +60,51 @@ public class Tile : ScriptableObject
         if (this.isTileFull())
             return false;
 
-        this.whatsInTile.chracter = character;
+        this.whatsInTile.character = character;
         return true;
     }
 
     public T getInTile<T>() {
-        if (typeof(T) == typeof(Cover))
-            return this.whatsInTile.cover;
+        System.Object tmp;
 
-        else if (typeof(T) == typeof(Chracter))
-            return this.whatsInTile.chracter;
+        if (typeof(T) == typeof(Cover))
+        {
+            tmp = this.whatsInTile.cover;
+            return (T)tmp;
+        }
+
+        else if (typeof(T) == typeof(Character))
+        {
+            tmp = this.whatsInTile.character;
+            return (T)tmp;
+        }
 
         throw new System.InvalidOperationException();
     }
 
     public T getInTileWithRemove<T>() {
+        System.Object tmp;
         if (typeof(T) == typeof(Cover))
-            Cover retCov = Cover.CopyTothis.whatsInTile.cover;
-            return this.whatsInTile.cover;
+        {
+            tmp = this.whatsInTile.cover;
+            this.whatsInTile.cover = null;
+            return (T)tmp;
+        }
 
-        else if (typeof(T) == typeof(Chracter))
-            return this.whatsInTile.chracter;
+        else if (typeof(T) == typeof(Character))
+        {
+            tmp = this.whatsInTile.character;
+            this.whatsInTile.character = null;
+            return (T)tmp;
+
+        }
 
         throw new System.InvalidOperationException();
     }
+
+}
+
+public class Grid : ScriptableObject {
+    Tile[,] tiles;
 
 }
