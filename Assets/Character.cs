@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Karakter : ScriptableObject
+public class Character : ScriptableObject
 {
     private int health { get; set; }
     private string Name { get; set; }
