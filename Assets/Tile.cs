@@ -13,7 +13,7 @@ public struct inTile {
     public Character character;
 }
 
-[CreateAssetMenu(fileName = "Create", menuName = "deneme2")]
+[CreateAssetMenu(fileName = "deneme", menuName = "deneme2")]
 public class Tile : ScriptableObject
 {
     private bool isReachable;

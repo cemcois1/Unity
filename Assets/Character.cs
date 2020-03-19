@@ -1,16 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-[CreateAssetMenu(fileName = "karakterdenemeleri", menuName = "Character", order = 0)]
+
 public class Character : ScriptableObject
 {
-    [SerializeField] int health;
-    [SerializeField] string Name;
-    [SerializeField] string tag;
-    [SerializeField] Dictionary<string, Animation> animationlist;
-    [SerializeField] Stats characterstats;
-    [SerializeField] Dictionary<string, AudioSource> soundList;
-    [SerializeField] GameObject karkater;
-    [SerializeField] Rigidbody rigidbody;
-    [SerializeField] Dictionary<string, Animation> effectoncharacter;
-
+    private int health { get; set; }
+    private string Name { get; set; }
+    private string tag { get; set; }
+    private Dictionary<string, Animation> animationlist { get; set; }
+    private Stats characterstats { get; set; }
+    private Dictionary<string, AudioSource> soundList { get; set; }
+    private GameObject karkater { get; set; }
+    private Rigidbody rigidbody { get; set; }
+    private Dictionary<string, Animation> effectoncharacter { get; set; }
 }
