@@ -13,7 +13,7 @@ public struct inTile {
     public Character character;
 }
 
-[CreateAssetMenu(fileName = "Create", menuName = "deneme2")]
+[CreateAssetMenu(fileName = "Create", menuName = "Tile")]
 public class Tile : ScriptableObject
 {
     private bool isReachable;
@@ -102,10 +102,5 @@ public class Tile : ScriptableObject
 
         throw new System.InvalidOperationException();
     }
-
-}
-
-public class Grid : ScriptableObject {
-    Tile[,] tiles;
 
 }
