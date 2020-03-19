@@ -12,6 +12,7 @@ public struct inTile {
     public Cover cover;
     public Character character;
 }
+
 [CreateAssetMenu(fileName = "deneme", menuName = "deneme2")]
 public class Tile : ScriptableObject
 {
