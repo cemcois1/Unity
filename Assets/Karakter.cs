@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class Karakter : ScriptableObject
 {
-    private int health;
-    private string name;
-    private string tag;
-    private Dictionary<string, Animation> animationlist;
-    private Stats characterstats;
-    private Dictionary<string, AudioSource> soundList;
-    private GameObject karkater;
-    private Rigidbody rigidbody;
-    private Dictionary<string, Animation> effectoncharacter;
+    private int health { get; set; }
+    private string Name { get; set; }
+    private string tag { get; set; }
+    private Dictionary<string, Animation> animationlist { get; set; }
+    private Stats characterstats { get; set; }
+    private Dictionary<string, AudioSource> soundList { get; set; }
+    private GameObject karkater { get; set; }
+    private Rigidbody rigidbody { get; set; }
+    private Dictionary<string, Animation> effectoncharacter { get; set; }
 }
