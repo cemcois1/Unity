@@ -17,6 +17,7 @@ public class tileoluşturmakodu : MonoBehaviour
     [SerializeField] GameObject tile;
     void Start()
     {
+        GameObject Grid = new GameObject("Grid");
         GameObject[,] tilelar = new GameObject[sizex, sizey];
 
         for (int i = 0; i < sizex; i++)//tileları üretip kaydediyor koordinatlarını
@@ -24,7 +25,7 @@ public class tileoluşturmakodu : MonoBehaviour
             for (int j = 0; j < sizey; j++)
             {
 
-                tmp = Instantiate(tile, new Vector3(i, -j), Quaternion.identity);
+                tmp = Instantiate(tile, new Vector3(i, -j), Quaternion.identity,Grid.transform);
                 tilelar[i, j] = tmp;
                 tmp.name = i.ToString() + j;
                 tmp.AddComponent<Tile>();
