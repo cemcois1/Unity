@@ -5,12 +5,14 @@ using UnityEngine;
 public class settilecode : MonoBehaviour
 {
    public GameObject go;
+    GameObject copy;
     void Start()
     {
         for (int i = 0; i < 20; i++)
         {
-            Instantiate(go);
-
+            copy= Instantiate(go);
+            copy.AddComponent<Tile>();
+            copy.AddComponent<BoxCollider>();
         }
 
     }
