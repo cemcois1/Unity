@@ -13,7 +13,6 @@ public struct inTile {
     public Character character;
 }
 
-[CreateAssetMenu(fileName = "Create", menuName = "Tile")]
 public class Tile : MonoBehaviour
 {
     private bool isReachable;
