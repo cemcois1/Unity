@@ -13,28 +13,28 @@ public struct inTile {
     public Character character;
 }
 
-public class Tile : MonoBehaviour   
+[CreateAssetMenu(fileName = "Create", menuName = "Tile")]
+public class Tile : MonoBehaviour
 {
     private bool isReachable;
     private inTile whatsInTile;
-
-    /* bunun yerine
-    public Tile(bool isReachable, inTile intile = new inTile())
-    {
+    private BoxCollider2D boxcollider;
+    
+    public Tile(bool isReachable, inTile intile = new inTile() , int offsetX = 0, int offsetY = 0 , float size = 1){
         this.isReachable = isReachable;
         this.whatsInTile = intile;
-    }*/
 
-    public Tile()
-    {
-        this.isReachable = true;
+        boxcollider = new BoxCollider2D();
+        boxcollider.offset = new Vector2(offsetX,offsetY);
+        boxcollider.size = new Vector2(size, size);
     }
+
 
     public bool isTileFull() {
         if (whatsInTile.character != null)
             return true;
 
-        else if (whatsInTile.cover != null)
+        if (whatsInTile.cover != null)
             return true;
 
         return false;
@@ -107,11 +107,5 @@ public class Tile : MonoBehaviour
 
         throw new System.InvalidOperationException();
     }
-
-}
-
-public class Grid : MonoBehaviour
-{
-    Tile[,] tiles;
 
 }
