@@ -4,12 +4,4 @@ using UnityEngine;
 
 public class saçmakodlarım : MonoBehaviour
 {
-    void Start()
-    {
-    }
-
-    void Update()
-    {
-
-    }
 }

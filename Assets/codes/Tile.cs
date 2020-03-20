@@ -13,23 +13,28 @@ public struct inTile {
     public Character character;
 }
 
-[CreateAssetMenu(fileName = "Create", menuName = "Tile")]
-public class Tile : ScriptableObject
+public class Tile : MonoBehaviour   
 {
     private bool isReachable;
     private inTile whatsInTile;
 
-
-    public Tile(bool isReachable, inTile intile = new inTile()){
+    /* bunun yerine
+    public Tile(bool isReachable, inTile intile = new inTile())
+    {
         this.isReachable = isReachable;
         this.whatsInTile = intile;
+    }*/
+
+    public Tile()
+    {
+        this.isReachable = true;
     }
 
     public bool isTileFull() {
         if (whatsInTile.character != null)
             return true;
 
-        if (whatsInTile.cover != null)
+        else if (whatsInTile.cover != null)
             return true;
 
         return false;
@@ -102,5 +107,11 @@ public class Tile : ScriptableObject
 
         throw new System.InvalidOperationException();
     }
+
+}
+
+public class Grid : MonoBehaviour
+{
+    Tile[,] tiles;
 
 }

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-[CreateAssetMenu(fileName = "karakterdenemeleri", menuName = "Character", order = 0)]
+[CreateAssetMenu( menuName = "Character", order = 0)]
 public class Character : ScriptableObject
 {
     [SerializeField] private int health;
