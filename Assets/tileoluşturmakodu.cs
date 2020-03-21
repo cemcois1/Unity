@@ -33,7 +33,8 @@ public class tileoluşturmakodu : MonoBehaviour
 
         }
         */
-        Grid grid = new Grid(4 , 5 , 0,0,2.1f , material );
+        
+        Grid grid = new Grid(4 , 5 , 0 , 0 , 2.1f , material );
 
     }
 

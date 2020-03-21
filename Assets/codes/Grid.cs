@@ -15,14 +15,19 @@ public class Grid : MonoBehaviour
         this.gameObject = new GameObject("Grid");
         tileMatris = new Tile[matrisX, matrisY];
 
+        bool isNull = false;
+        if (tile == null)
+            isNull = true;
+
         inTile? refInTile;
         inTileTool itt = new inTileTool();
 
         for (int X = 0; X < matrisX; X++) {
             for (int Y = 0; Y < matrisY; Y++) {
                 refInTile = null;
-                if (!itt.isNull(tile[X, Y]))
-                    refInTile = tile[X, Y];
+                if (!isNull)
+                    if (!itt.isNull(tile[X, Y]))
+                        refInTile = tile[X, Y];
 
                 this.tileMatris[X, Y] = new Tile( this.gameObject , X.ToString() + " " + Y.ToString() ,false , new inTile() , offsetX + X * scale , -( offsetY + Y * scale ) , scale ,  material);
             }
