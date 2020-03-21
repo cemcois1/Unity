@@ -13,6 +13,16 @@ public struct inTile {
     public Character character;
 }
 
+public class inTileTool {
+    public bool isNull(inTile tile ){
+        if (tile.cover == null)
+            if (tile.character == null)
+                return true;
+
+        return false;
+    }
+}
+
 public class Tile : MonoBehaviour
 {
     private bool isReachable;
@@ -20,13 +30,15 @@ public class Tile : MonoBehaviour
     private GameObject gameObject;
 
 
-    public Tile(string name , bool isReachable, inTile intile = new inTile(), float offsetX = 0, float offsetY = 0, float size = 1 , Material material = null) {
+    public Tile(GameObject parent , string name , bool isReachable, inTile intile = new inTile(), float offsetX = 0, float offsetY = 0, float size = 1 , Material material = null) {
         GameObject tmpGO = GameObject.CreatePrimitive(PrimitiveType.Cube);  
 
         this.isReachable = isReachable;
         this.whatsInTile = intile;
 
         this.gameObject = new GameObject(name);
+
+        this.gameObject.transform.parent = parent.transform;
 
         this.gameObject.transform.position = new Vector2(offsetX, offsetY);
         this.gameObject.transform.localScale = new Vector2(size, size);
