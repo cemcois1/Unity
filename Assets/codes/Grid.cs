@@ -14,15 +14,15 @@ public class Grid : MonoBehaviour
     {
         tileMatris = new Tile[matrisX, matrisY];
 
-        System.Object refInTile;
+        //System.Object refInTile;
 
         for (int X = 0; X < matrisX; X++) {
             for (int Y = 0; Y < matrisY; Y++) {
-                refInTile = null;
-                if (!tile[X, Y].Equals(new inTile()))
-                    refInTile = tile[X, Y];
+                //refInTile = null;
+                //if (!tile[X, Y].Equals(new inTile()))
+                //    refInTile = tile[X, Y];
 
-                tileMatris[X, Y] = new Tile( X.ToString() + " " + Y.ToString() ,false , (inTile) refInTile , offsetX + X * scale , -( offsetY + Y * scale ) , scale ,  material);
+                tileMatris[X, Y] = new Tile( X.ToString() + " " + Y.ToString() ,false , new inTile() , offsetX + X * scale , -( offsetY + Y * scale ) , scale ,  material);
             }
         }
         
