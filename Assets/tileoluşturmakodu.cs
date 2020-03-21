@@ -14,9 +14,9 @@ public class tileoluşturmakodu : MonoBehaviour
     public int sizex, sizey;
     GameObject tmp;
 
-    [SerializeField] GameObject tile;
+    [SerializeField] Material material;
     void Start()
-    {
+    {/*
         GameObject Grid = new GameObject("Grid");
         GameObject[,] tilelar = new GameObject[sizex, sizey];
 
@@ -32,6 +32,8 @@ public class tileoluşturmakodu : MonoBehaviour
             }
 
         }
+        */
+        Grid grid = new Grid(4 , 5 , 0,0,2.1f , material );
 
     }
 

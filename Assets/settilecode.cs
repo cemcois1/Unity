@@ -16,7 +16,7 @@ public class settilecode : MonoBehaviour
             copy.AddComponent<Tile>();
             copy.AddComponent<BoxCollider>();
         }
-        Grid x = new Grid();
+        //Grid x = new Grid();
         // x.createtiles(int  a, int b,vector2 başlangıçkonumu,vector3 karebüyüklüğü )
 
     }

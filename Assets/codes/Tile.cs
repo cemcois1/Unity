@@ -17,17 +17,31 @@ public class Tile : MonoBehaviour
 {
     private bool isReachable;
     private inTile whatsInTile;
-    private BoxCollider2D boxcollider;
-    
-    public Tile(bool isReachable, inTile intile = new inTile() , int offsetX = 0, int offsetY = 0 , float size = 1){
+    private GameObject gameObject;
+
+
+    public Tile(string name , bool isReachable, inTile intile = new inTile(), float offsetX = 0, float offsetY = 0, float size = 1 , Material material = null) {
+        GameObject tmpGO = GameObject.CreatePrimitive(PrimitiveType.Cube);  
+
         this.isReachable = isReachable;
         this.whatsInTile = intile;
 
-        boxcollider = new BoxCollider2D();
-        boxcollider.offset = new Vector2(offsetX,offsetY);
-        boxcollider.size = new Vector2(size, size);
-    }
+        this.gameObject = new GameObject(name);
 
+        this.gameObject.transform.position = new Vector2(offsetX, offsetY);
+        this.gameObject.transform.localScale = new Vector2(size, size);
+
+        this.gameObject.AddComponent<BoxCollider2D>();
+        
+        this.gameObject.AddComponent<tıklandı>();
+        this.gameObject.AddComponent<MeshRenderer>();
+        this.gameObject.GetComponent<MeshRenderer>().sharedMaterial = material;
+
+        this.gameObject.AddComponent<MeshFilter>();
+        this.gameObject.GetComponent<MeshFilter>().mesh = tmpGO.GetComponent<MeshFilter>().mesh;
+
+        Destroy(tmpGO);
+    }
 
     public bool isTileFull() {
         if (whatsInTile.character != null)
