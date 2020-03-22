@@ -44,9 +44,4 @@ public class Grid : MonoBehaviour
     public void highlightTiles(GameObject gameObject) {
         
     }
-
-    private void OnMouseUp()
-    {
-        Debug.Log("asdfg");
-    }
 }

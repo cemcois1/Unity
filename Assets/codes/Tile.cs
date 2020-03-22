@@ -156,6 +156,6 @@ public class Tile : MonoBehaviour
 
     public  void OnMouseUp()
     {
-        Debug.Log(GameObject.Find("2 4").GetComponent<Tile>().matrisCor);
+        Debug.Log(this.gameObject);
     }
 }
