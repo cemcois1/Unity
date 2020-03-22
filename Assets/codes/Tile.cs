@@ -27,25 +27,29 @@ public class Tile : MonoBehaviour
 {
     private bool isReachable;
     private inTile whatsInTile;
+    private Vector2 matrisCor;
     private GameObject gameObject;
 
-
-    public Tile(GameObject parent , string name , bool isReachable, inTile intile = new inTile(), float offsetX = 0, float offsetY = 0, float size = 1 , Material material = null) {
-        GameObject tmpGO = GameObject.CreatePrimitive(PrimitiveType.Cube);  
+    public Tile(GameObject parent, string name, bool isReachable, inTile intile = new inTile(), float offsetX = 0, float offsetY = 0, float size = 1, Material material = null)
+    {
+        GameObject tmpGO = GameObject.CreatePrimitive(PrimitiveType.Cube);
 
         this.isReachable = isReachable;
         this.whatsInTile = intile;
 
         this.gameObject = new GameObject(name);
 
+        this.matrisCor = new Vector2(float.Parse(name.Split(' ')[0]), float.Parse(name.Split(' ')[1]));
+
         this.gameObject.transform.parent = parent.transform;
 
         this.gameObject.transform.position = new Vector2(offsetX, offsetY);
         this.gameObject.transform.localScale = new Vector2(size, size);
 
+        this.gameObject.AddComponent<Tile>();
+
         this.gameObject.AddComponent<BoxCollider2D>();
-        
-        this.gameObject.AddComponent<tıklandı>();
+
         this.gameObject.AddComponent<MeshRenderer>();
         this.gameObject.GetComponent<MeshRenderer>().sharedMaterial = material;
 
@@ -55,7 +59,13 @@ public class Tile : MonoBehaviour
         Destroy(tmpGO);
     }
 
-    public bool isTileFull() {
+    public Vector2 getMatrisCordinate()
+    {
+        return this.matrisCor;
+    }
+
+    public bool isTileFull()
+    {
         if (whatsInTile.character != null)
             return true;
 
@@ -65,21 +75,24 @@ public class Tile : MonoBehaviour
         return false;
     }
 
-    public TileObject whatInTile() {
+    public TileObject whatInTile()
+    {
         if (whatsInTile.character != null)
             return TileObject.Character;
 
         if (whatsInTile.cover != null)
             return TileObject.Cover;
 
-        return TileObject.Null; 
+        return TileObject.Null;
     }
 
-    public bool isItReachable() {
+    public bool isItReachable()
+    {
         return this.isReachable;
     }
 
-    public bool setInTile(Cover cover) {
+    public bool setInTile(Cover cover)
+    {
         if (this.isTileFull())
             return false;
 
@@ -87,7 +100,8 @@ public class Tile : MonoBehaviour
         return true;
     }
 
-    public bool setInTile(Character character) {
+    public bool setInTile(Character character)
+    {
         if (this.isTileFull())
             return false;
 
@@ -95,7 +109,8 @@ public class Tile : MonoBehaviour
         return true;
     }
 
-    public T getInTile<T>() {
+    public T getInTile<T>()
+    {
         System.Object tmp;
 
         if (typeof(T) == typeof(Cover))
@@ -113,7 +128,8 @@ public class Tile : MonoBehaviour
         throw new System.InvalidOperationException();
     }
 
-    public T getInTileWithRemove<T>() {
+    public T getInTileWithRemove<T>()
+    {
         System.Object tmp;
         if (typeof(T) == typeof(Cover))
         {
@@ -133,4 +149,13 @@ public class Tile : MonoBehaviour
         throw new System.InvalidOperationException();
     }
 
+    public void highlightTile()
+    {
+        this.gameObject.GetComponent<MeshRenderer>().material.color = Color.white;
+    }
+
+    public  void OnMouseUp()
+    {
+        Debug.Log(GameObject.Find("2 4").GetComponent<Tile>().matrisCor);
+    }
 }
