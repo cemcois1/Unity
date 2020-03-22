@@ -151,11 +151,14 @@ public class Tile : MonoBehaviour
 
     public void highlightTile()
     {
-        this.gameObject.GetComponent<MeshRenderer>().material.color = Color.white;
+        print(GameObject.Find(name));
+        GameObject.Find(name).GetComponent<MeshRenderer>().material.color = Color.white;
     }
 
     public  void OnMouseUp()
     {
-        Debug.Log(this.gameObject);
+
+        highlightTile();
+
     }
 }
