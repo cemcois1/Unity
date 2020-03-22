@@ -341,4 +341,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sizex: 3
   sizey: 2
+  offsetX: 0
+  offsetY: 0
+  scale: 1
   material: {fileID: 2100000, guid: 6dc0dc9b7bd13e54689e6136847f41ee, type: 2}
