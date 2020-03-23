@@ -59,7 +59,7 @@ public class Tile : MonoBehaviour
         this.gameObject.GetComponent<MeshFilter>().mesh = tmpGO.GetComponent<MeshFilter>().mesh;
 
         this.defaultColor = this.gameObject.GetComponent<MeshRenderer>().material.color;
-
+        this.defaultColor.a = 225;
         Destroy(tmpGO);
     }
 
@@ -161,9 +161,11 @@ public class Tile : MonoBehaviour
 
     public void unHighlightTile() {
         Tile tile = GameObject.Find(this.name).GetComponent<Tile>();
-        Debug.Log("adf");
+        Debug.Log(GameObject.Find(this.name).GetComponent<Tile>());
         isHighlishted = !isHighlishted;
-        GameObject.Find(this.name).GetComponent<MeshRenderer>().material.SetColor("asd" , GameObject.Find(this.name).GetComponent<Tile>().defaultColor);
+        //tile.GetComponent<MeshRenderer>().material.SetColor("Orange", defaultColor);
+        tile.GetComponent<MeshRenderer>().material.color = defaultColor;
+       // GameObject.Find(this.name).GetComponent<MeshRenderer>().material.SetColor("asd" , GameObject.Find(this.name).GetComponent<Tile>().defaultColor);
     }
 
     public  void clickByMouse()

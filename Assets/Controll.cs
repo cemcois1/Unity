@@ -11,12 +11,12 @@ public class Controll : MonoBehaviour
 
     void Start()
     {
-        
+
     }
 
-    // Update is called once per frame
     void Update()
     {
+
         ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         hittedObject = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity);
         if (hittedObject.collider.name != null)
