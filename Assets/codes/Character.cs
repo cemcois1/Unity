@@ -3,13 +3,13 @@ using UnityEngine;
 [CreateAssetMenu( menuName = "Character", order = 0)]
 public class Character : ScriptableObject
 {
-    [SerializeField] private int health;
-    [SerializeField] private string Name;
-    [SerializeField] private string tag;
-    [SerializeField] private Dictionary<string, Animation> animationlist;
-    [SerializeField] private Stats characterstats;
-    [SerializeField] private Dictionary<string, AudioSource> soundList;
-    [SerializeField] private GameObject CharacterGO;
-    [SerializeField] private Dictionary<string, Animation> effectoncharacter;
+    [SerializeField] public int health;
+    [SerializeField] public string name;
+    [SerializeField] public string tag;
+    [SerializeField] public Dictionary<string, Animation> animationlist;
+    [SerializeField] public Stats characterstats;
+    [SerializeField] public Dictionary<string, AudioSource> soundList;
+    [SerializeField] public GameObject CharacterGO;
+    [SerializeField] public Dictionary<string, Animation> effectoncharacter;
 
 }

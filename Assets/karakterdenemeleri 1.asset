@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57afd34aed7e10b4b949a52234063ee8, type: 3}
   m_Name: karakterdenemeleri 1
   m_EditorClassIdentifier: 
-  health: 10
-  Name: Cemal
-  tag: "Yak\u0131\u015F\u0131kl\u0131"
+  health: 1453
+  name: "Cemal Adam\u0131n Dibidir"
+  tag: DENEME
   characterstats: {fileID: 11400000, guid: 68a1dc8c8d1344642a47ba0e0b2f05ea, type: 2}
   CharacterGO: {fileID: 1272898736425012419, guid: d02b7cd42c9a6584dbf664bb3c5c7a12,
     type: 3}
