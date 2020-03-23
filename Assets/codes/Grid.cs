@@ -30,7 +30,7 @@ public class Grid : MonoBehaviour
                     if (!itt.isNull(tile[X, Y]))
                         refInTile = tile[X, Y];
 
-                this.tileMatris[X, Y] = new Tile( this.gameObject , X.ToString() + " " + Y.ToString() ,false , new inTile() , offsetX + X * scale , -( offsetY + Y * scale ) , scale ,  material);
+                this.tileMatris[X, Y] = new Tile(new GameObject(X.ToString() + " " + Y.ToString()) , this.gameObject , X.ToString() + " " + Y.ToString() ,false , new inTile() , offsetX + X * scale , -( offsetY + Y * scale ) , scale ,  material);
             }
         }
 

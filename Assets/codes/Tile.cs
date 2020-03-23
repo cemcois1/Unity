@@ -2,19 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum TileObject { 
+public enum TileObject
+{
     Cover,
     Character,
     Null
 }
 
-public struct inTile { 
+public struct inTile
+{
     public Cover cover;
     public Character character;
 }
 
-public class inTileTool {
-    public bool isNull(inTile tile ){
+public class inTileTool
+{
+    public bool isNull(inTile tile)
+    {
         if (tile.cover == null)
             if (tile.character == null)
                 return true;
@@ -23,6 +27,7 @@ public class inTileTool {
     }
 }
 
+
 public class Tile : MonoBehaviour
 {
     private bool isHighlishted = false;
@@ -30,38 +35,33 @@ public class Tile : MonoBehaviour
     private Color defaultColor;
     private inTile whatsInTile;
     private Vector2 matrisCor;
-    private GameObject gameObject;
 
-    public Tile(GameObject parent, string name, bool isReachable, inTile intile = new inTile(), float offsetX = 0, float offsetY = 0, float size = 1, Material material = null)
+    public Tile(GameObject tile, GameObject parent, string name, bool isReachable, inTile intile = new inTile(), float offsetX = 0, float offsetY = 0, float size = 1, Material material = null)
     {
         GameObject tmpGO = GameObject.CreatePrimitive(PrimitiveType.Cube);
 
-        this.isReachable = isReachable;
-        this.whatsInTile = intile;
+        tile.AddComponent<Tile>();
+        tile.GetComponent<Tile>().isReachable = isReachable;
+        tile.GetComponent<Tile>().whatsInTile = intile;
 
-        this.gameObject = new GameObject(name);
+        tile.GetComponent<Tile>().matrisCor = new Vector2(float.Parse(name.Split(' ')[0]), float.Parse(name.Split(' ')[1]));
 
-        this.matrisCor = new Vector2(float.Parse(name.Split(' ')[0]), float.Parse(name.Split(' ')[1]));
+        tile.transform.parent = parent.transform;
 
-        this.gameObject.transform.parent = parent.transform;
+        tile.transform.position = new Vector2(offsetX, offsetY);
+        tile.transform.localScale = new Vector2(size, size);
 
-        this.gameObject.transform.position = new Vector2(offsetX, offsetY);
-        this.gameObject.transform.localScale = new Vector2(size, size);
+        tile.AddComponent<BoxCollider2D>();
 
-        this.gameObject.AddComponent<Tile>();
+        tile.AddComponent<MeshRenderer>().sharedMaterial = material;
 
-        this.gameObject.AddComponent<BoxCollider2D>();
+        tile.AddComponent<MeshFilter>().mesh = tmpGO.GetComponent<MeshFilter>().mesh;
 
-        this.gameObject.AddComponent<MeshRenderer>();
-        this.gameObject.GetComponent<MeshRenderer>().sharedMaterial = material;
-
-        this.gameObject.AddComponent<MeshFilter>();
-        this.gameObject.GetComponent<MeshFilter>().mesh = tmpGO.GetComponent<MeshFilter>().mesh;
-
-        this.defaultColor = this.gameObject.GetComponent<MeshRenderer>().material.color;
-        this.defaultColor.a = 225;
+        tile.GetComponent<Tile>().defaultColor = tile.GetComponent<MeshRenderer>().material.color;
         Destroy(tmpGO);
+
     }
+
 
     public Vector2 getMatrisCordinate()
     {
@@ -159,19 +159,18 @@ public class Tile : MonoBehaviour
         GameObject.Find(this.name).GetComponent<MeshRenderer>().material.color = Color.white;
     }
 
-    public void unHighlightTile() {
-        Tile tile = GameObject.Find(this.name).GetComponent<Tile>();
-        Debug.Log(GameObject.Find(this.name).GetComponent<Tile>());
+    public void unHighlightTile()
+    {
         isHighlishted = !isHighlishted;
-        //tile.GetComponent<MeshRenderer>().material.SetColor("Orange", defaultColor);
-        tile.GetComponent<MeshRenderer>().material.color = defaultColor;
-       // GameObject.Find(this.name).GetComponent<MeshRenderer>().material.SetColor("asd" , GameObject.Find(this.name).GetComponent<Tile>().defaultColor);
+        this.GetComponent<MeshRenderer>().material.color = defaultColor;
     }
 
-    public  void clickByMouse()
+    public void clickByMouse()
     {
+        Debug.Log(this.GetType());
 
-        switch (isHighlishted) {
+        switch (isHighlishted)
+        {
             case false:
                 this.highlightTile();
                 break;
@@ -180,6 +179,8 @@ public class Tile : MonoBehaviour
                 this.unHighlightTile();
                 break;
         }
-       
+
     }
 }
+
+
