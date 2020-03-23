@@ -353,10 +353,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b83e710e9bfee9b48a1645739ac995ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sizex: 3
-  sizey: 2
-  offsetX: 0
-  offsetY: 0
+  sizex: 5
+  sizey: 5
+  offsetX: 1
+  offsetY: 1
   scale: 1
   material: {fileID: 2100000, guid: 6dc0dc9b7bd13e54689e6136847f41ee, type: 2}
 --- !u!114 &554353270
@@ -372,3 +372,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CV: {fileID: 11400000, guid: e7853b7cc0d8a544e849f8b3edb3ca7c, type: 2}
+  characterprefab: {fileID: 1272898736425012419, guid: d02b7cd42c9a6584dbf664bb3c5c7a12,
+    type: 3}
