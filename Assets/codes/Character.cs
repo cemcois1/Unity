@@ -9,8 +9,7 @@ public class Character : ScriptableObject
     [SerializeField] private Dictionary<string, Animation> animationlist;
     [SerializeField] private Stats characterstats;
     [SerializeField] private Dictionary<string, AudioSource> soundList;
-    [SerializeField] private GameObject karkater;
-    [SerializeField] private Rigidbody rigidbody;
+    [SerializeField] private GameObject CharacterGO;
     [SerializeField] private Dictionary<string, Animation> effectoncharacter;
 
 }

@@ -1,21 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+[CreateAssetMenu(fileName = "StatExamples", menuName = "Statpoints", order = 3)]
 public class Stats : ScriptableObject
 {
-    private int maxHealth;
-    private int meleeDamage;
-    private int rangeDamage;
-    private int defance;
-    private int attackRange;
-    private int moveRange;
-    private int runRange;
-    private int completition;
-    private int info;
-    private int meleeWeaponSkill;
-    private int rangeWeaponSkill;
-    private float regenerationSkill;
+    [SerializeField] private int maxHealth;
+    [SerializeField] private int meleeDamage;
+    [SerializeField] private int rangeDamage;
+    [SerializeField] private int defance;
+    [SerializeField] private int attackRange;
+    [SerializeField] private int moveRange;
+    [SerializeField] private int runRange;
+    [SerializeField] private int completition;
+    [SerializeField] private int info;
+    [SerializeField] private int meleeWeaponSkill;
+    [SerializeField] private int rangeWeaponSkill;
+    [SerializeField] private float regenerationSkill;
 
     public void setmaxHealth(int Health) { maxHealth = Health; }
     public int getMaxHealth() { return maxHealth; }
