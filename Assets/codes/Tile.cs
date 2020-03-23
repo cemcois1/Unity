@@ -25,7 +25,9 @@ public class inTileTool {
 
 public class Tile : MonoBehaviour
 {
+    private bool isHighlishted = false;
     private bool isReachable;
+    private Color defaultColor;
     private inTile whatsInTile;
     private Vector2 matrisCor;
     private GameObject gameObject;
@@ -55,6 +57,8 @@ public class Tile : MonoBehaviour
 
         this.gameObject.AddComponent<MeshFilter>();
         this.gameObject.GetComponent<MeshFilter>().mesh = tmpGO.GetComponent<MeshFilter>().mesh;
+
+        this.defaultColor = this.gameObject.GetComponent<MeshRenderer>().material.color;
 
         Destroy(tmpGO);
     }
@@ -151,14 +155,29 @@ public class Tile : MonoBehaviour
 
     public void highlightTile()
     {
-        print(GameObject.Find(name));
+        isHighlishted = !isHighlishted;
         GameObject.Find(this.name).GetComponent<MeshRenderer>().material.color = Color.white;
     }
 
-    public  void OnMouseUp()
+    public void unHighlightTile() {
+        Tile tile = GameObject.Find(this.name).GetComponent<Tile>();
+        Debug.Log("adf");
+        isHighlishted = !isHighlishted;
+        GameObject.Find(this.name).GetComponent<MeshRenderer>().material.SetColor("asd" , GameObject.Find(this.name).GetComponent<Tile>().defaultColor);
+    }
+
+    public  void clickByMouse()
     {
 
-       this.highlightTile();
+        switch (isHighlishted) {
+            case false:
+                this.highlightTile();
+                break;
 
+            case true:
+                this.unHighlightTile();
+                break;
+        }
+       
     }
 }
