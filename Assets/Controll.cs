@@ -22,8 +22,8 @@ public class Controll : MonoBehaviour
         if (hittedObject.collider.name != null)
             if (Input.GetMouseButtonDown(0))
             {
-                GameObject.Find(hittedObject.collider.name).GetComponent<Tile>().clickByMouse();
                 lastObject = GameObject.Find(hittedObject.collider.name).GetComponent<Tile>().getMatrisCordinate();
+                GameObject.Find("Grid").GetComponent<Grid>().highlightTiles(lastObject);
             }
     }
 }

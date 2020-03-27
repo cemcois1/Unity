@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class Grid : MonoBehaviour
 {
-    public Tile[,] tileMatris;
+    private Vector2 matrisSize;
     private GameObject gameObject;
     private Vector2 offset;
     private int size;
@@ -14,7 +14,8 @@ public class Grid : MonoBehaviour
     public Grid( int matrisX , int matrisY , float offsetX , float offsetY , float scale ,  Material material , inTile[,] tile = null)
     {
         this.gameObject = new GameObject("Grid");
-        tileMatris = new Tile[matrisX, matrisY];
+        this.gameObject.AddComponent<Grid>();
+        GameObject.Find("Grid").GetComponent<Grid>().matrisSize = new Vector2(matrisX, matrisY);
 
         bool isNull = false;
         if (tile == null)
@@ -30,18 +31,29 @@ public class Grid : MonoBehaviour
                     if (!itt.isNull(tile[X, Y]))
                         refInTile = tile[X, Y];
 
-                this.tileMatris[X, Y] = new Tile(new GameObject(X.ToString() + " " + Y.ToString()) , this.gameObject , X.ToString() + " " + Y.ToString() ,false , new inTile() , offsetX + X * scale , -( offsetY + Y * scale ) , scale ,  material);
+                Tile.TileAdder(new GameObject(X.ToString() + " " + Y.ToString()) , this.gameObject , X.ToString() + " " + Y.ToString() ,false , new inTile() , offsetX + X * scale , -( offsetY + Y * scale ) , scale ,  material);
             }
         }
 
     }
 
 
-    private float calDistanceBetTile(Tile tile1 , Tile tile2) {
-        return (float)Math.Pow(Math.Sqrt(tile1.getMatrisCordinate().x - tile2.getMatrisCordinate().x) + Math.Sqrt(tile1.getMatrisCordinate().y - tile2.getMatrisCordinate().y), 0.5f);
+    private static float calDistanceBetTile(Vector2 vector1 , Vector2 vector2) {
+        Debug.Log(vector2.x +" "+ vector2.y + " " + vector1.x + " " + vector1.y +" "+ (vector2.x < vector1.x ? vector1.x - vector2.x : vector2.x - vector1.x));
+        return (float)Math.Pow(Math.Sqrt(vector2.x < vector1.x ?vector1.x - vector2.x : vector2.x-vector1.x ) + Math.Sqrt(vector2.y < vector1.y ? vector1.y - vector2.y : vector2.y - vector1.y ), 0.5f);
     }
 
-    public void highlightTiles(GameObject gameObject) {
-        
+    public void highlightTiles(Vector2 cordinate) {
+        int llll = 3;
+        for (int x = (int)cordinate.x - llll < 0 ? 0 : (int)cordinate.x - llll; x <= (int)cordinate.x + llll; x++) {
+            for (int y = (int)cordinate.y - llll < 0 ? 0 : (int)cordinate.y - llll; y <= (int)cordinate.y + llll; y++)
+            {
+                Debug.Log(Math.Pow(llll, 0.5f) +" "+ Grid.calDistanceBetTile(new Vector2(x, y), cordinate));
+                if (Grid.calDistanceBetTile(new Vector2(x, y), cordinate) < Math.Pow(llll,0.5f)) {
+                    GameObject.Find(x.ToString() + " " + y.ToString()).GetComponent<Tile>().highlightTile();
+                }
+            }
+        }
+
     }
 }

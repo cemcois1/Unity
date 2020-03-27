@@ -36,7 +36,9 @@ public class Tile : MonoBehaviour
     private inTile whatsInTile;
     private Vector2 matrisCor;
 
-    public Tile(GameObject tile, GameObject parent, string name, bool isReachable, inTile intile = new inTile(), float offsetX = 0, float offsetY = 0, float size = 1, Material material = null)
+    private Tile() { }
+
+    public static void TileAdder(GameObject tile, GameObject parent, string name, bool isReachable, inTile intile = new inTile(), float offsetX = 0, float offsetY = 0, float size = 1, Material material = null)
     {
         GameObject tmpGO = GameObject.CreatePrimitive(PrimitiveType.Cube);
 
@@ -59,7 +61,6 @@ public class Tile : MonoBehaviour
 
         tile.GetComponent<Tile>().defaultColor = tile.GetComponent<MeshRenderer>().material.color;
         Destroy(tmpGO);
-
     }
 
 
@@ -156,7 +157,7 @@ public class Tile : MonoBehaviour
     public void highlightTile()
     {
         isHighlishted = !isHighlishted;
-        GameObject.Find(this.name).GetComponent<MeshRenderer>().material.color = Color.white;
+        GameObject.Find(this.gameObject.name).GetComponent<MeshRenderer>().material.color = Color.white;
     }
 
     public void unHighlightTile()
@@ -182,5 +183,3 @@ public class Tile : MonoBehaviour
 
     }
 }
-
-
