@@ -42,6 +42,8 @@ public class Tile : MonoBehaviour
     {
         GameObject tmpGO = GameObject.CreatePrimitive(PrimitiveType.Cube);
 
+        tile.tag = "Tile";
+
         tile.AddComponent<Tile>();
         tile.GetComponent<Tile>().isReachable = isReachable;
         tile.GetComponent<Tile>().whatsInTile = intile;
@@ -163,21 +165,19 @@ public class Tile : MonoBehaviour
     public void unHighlightTile()
     {
         isHighlishted = !isHighlishted;
-        this.GetComponent<MeshRenderer>().material.color = defaultColor;
+        GameObject.Find(this.gameObject.name).GetComponent<MeshRenderer>().material.color = GameObject.Find(this.gameObject.name).GetComponent<Tile>().defaultColor;
     }
 
     public void clickByMouse()
     {
-        Debug.Log(this.GetType());
-
-        switch (isHighlishted)
+        switch (GameObject.Find(this.gameObject.name).GetComponent<Tile>().isHighlishted)
         {
             case false:
-                this.highlightTile();
+                GameObject.Find(this.gameObject.name).GetComponent<Tile>().highlightTile();
                 break;
 
             case true:
-                this.unHighlightTile();
+                GameObject.Find(this.gameObject.name).GetComponent<Tile>().unHighlightTile();
                 break;
         }
 
