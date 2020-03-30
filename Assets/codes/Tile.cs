@@ -38,7 +38,7 @@ public class Tile : MonoBehaviour
 
     private Tile() { }
 
-    public static void TileAdder(GameObject tile, GameObject parent, string name, bool isReachable, inTile intile = new inTile(), float offsetX = 0, float offsetY = 0, float size = 1, Material material = null)
+    public static GameObject TileAdder(GameObject tile, GameObject parent, bool isReachable, inTile intile = new inTile(), float offsetX = 0, float offsetY = 0, float size = 1, Material material = null)
     {
         GameObject tmpGO = GameObject.CreatePrimitive(PrimitiveType.Cube);
 
@@ -48,7 +48,7 @@ public class Tile : MonoBehaviour
         tile.GetComponent<Tile>().isReachable = isReachable;
         tile.GetComponent<Tile>().whatsInTile = intile;
 
-        tile.GetComponent<Tile>().matrisCor = new Vector2(float.Parse(name.Split(' ')[0]), float.Parse(name.Split(' ')[1]));
+        tile.GetComponent<Tile>().matrisCor = new Vector2(float.Parse(tile.name.Split(' ')[0]), float.Parse(tile.name.Split(' ')[1]));
 
         tile.transform.parent = parent.transform;
 
@@ -63,6 +63,8 @@ public class Tile : MonoBehaviour
 
         tile.GetComponent<Tile>().defaultColor = tile.GetComponent<MeshRenderer>().material.color;
         Destroy(tmpGO);
+
+        return tile;
     }
 
 

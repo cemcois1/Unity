@@ -21,11 +21,16 @@ public class Controll : MonoBehaviour
         hittedObject = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity);
         if (Input.GetMouseButtonDown(0))
         {
-            if (hittedObject.collider.gameObject.tag == "Tile")
+            if (hittedObject.collider.gameObject.tag == null)
+                Debug.Log("null");
+            
+            else if (hittedObject.collider.gameObject.tag == "Tile")
             {
                 this.gridHit(hittedObject);
-
             }
+            
+            else if (hittedObject.collider.gameObject.tag == "Chracter")
+                Debug.Log("asdfg");
         }
     }
 

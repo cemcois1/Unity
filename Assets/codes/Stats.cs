@@ -15,6 +15,7 @@ public class Stats : ScriptableObject
     [SerializeField] private int info;
     [SerializeField] private int meleeWeaponSkill;
     [SerializeField] private int rangeWeaponSkill;
+    [SerializeField] private int reflex;
     [SerializeField] private float regenerationSkill;
 
     public void setmaxHealth(int Health) { maxHealth = Health; }
@@ -55,6 +56,10 @@ public class Stats : ScriptableObject
 
     public void setrangeWeaponSkill(int newValue) { rangeWeaponSkill = newValue; }
     public int getrangeWeaponSkill() { return rangeWeaponSkill; }
+
+
+    public void setReflex(int reflex) { this.reflex = reflex; }
+    public int getReflex() { return this.reflex; }
 
 
     public void setregenerationSkill(int newValue) { regenerationSkill = newValue; }

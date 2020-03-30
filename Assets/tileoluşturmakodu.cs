@@ -18,7 +18,7 @@ public class tileoluşturmakodu : MonoBehaviour
     private GameObject tmp;
     void Start()
     {   
-        Grid grid = new Grid(sizex , sizey , offsetX , offsetY , (float)scale , material );
+        GameObject grid = Grid.gridStart(sizex , sizey , offsetX , offsetY , (float)scale , material );
     }
 
 }
