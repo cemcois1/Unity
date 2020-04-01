@@ -12,7 +12,7 @@ public enum TileObject
 public struct inTile
 {
     public Cover cover;
-    public Character character;
+    public GameObject character;
 }
 
 public class inTileTool
@@ -109,7 +109,7 @@ public class Tile : MonoBehaviour
         return true;
     }
 
-    public bool setInTile(Character character)
+    public bool setInTile(GameObject character)
     {
         if (this.isTileFull())
             return false;

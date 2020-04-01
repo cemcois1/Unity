@@ -9,9 +9,9 @@ public class SetCharacterCode : MonoBehaviour
     private CharacterValueControlCode code;
 
     void Start()
-    {
+    {/*
         GameObject karakterim = Instantiate(characterprefab);
-        code= karakterim.GetComponent<CharacterValueControlCode>();
+        code = karakterim.GetComponent<CharacterValueControlCode>();
         code.health = CV.health;
         code.name= CV.name;
         code.tag= CV.tag;
@@ -20,5 +20,6 @@ public class SetCharacterCode : MonoBehaviour
         code.soundList= CV.soundList;
         code.CharacterGO= CV.CharacterGO;
         code.effectoncharacter = CV.effectoncharacter;
+    */
     }
 }

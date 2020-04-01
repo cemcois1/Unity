@@ -17,8 +17,32 @@ public class tileoluşturmakodu : MonoBehaviour
 
     private GameObject tmp;
     void Start()
-    {   
-        GameObject grid = Grid.gridStart(sizex , sizey , offsetX , offsetY , (float)scale , material );
+    {
+        Dictionary<string, inTile> refDic = new Dictionary<string, inTile>();  //Object Pooling
+        
+        inTile refInTile = new inTile();
+        refInTile.character = Instantiate((GameObject)Resources.Load<GameObject>("Karakterim"));
+        
+        refDic.Add("1 1", refInTile);
+
+        GameObject grid = Grid.gridStart(sizex , sizey , offsetX , offsetY , (float)scale , material ,refDic);
+    
     }
 
 }
+
+//Object Pooling//Object Pooling//Object Pooling//Object Pooling
+
+//Object Pooling
+//Object Pooling
+//Object Pooling
+//Object Pooling
+//Object Pooling
+//Object Pooling
+//Object Pooling
+//Object Pooling
+//Object Pooling
+//Object Pooling
+//Object Pooling
+//Object Pooling//Object Pooling
+//Object Pooling//Object Pooling//Object Pooling//Object Pooling

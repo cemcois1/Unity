@@ -13,7 +13,7 @@ public class Grid : MonoBehaviour
     private int size;
 
     private Grid() { }
-    public static GameObject gridStart(int matrisX, int matrisY, float offsetX, float offsetY, float scale, Material material, inTile[,] tile = null)
+    public static GameObject gridStart(int matrisX, int matrisY, float offsetX, float offsetY, float scale, Material material, Dictionary<string,inTile> tile = null)
     {
         GameObject tmp = new GameObject("Grid");
         tmp.AddComponent<Grid>();
@@ -29,11 +29,17 @@ public class Grid : MonoBehaviour
         for (int X = 0; X < matrisX; X++) {
             for (int Y = 0; Y < matrisY; Y++) {
                 refInTile = null;
+            
                 if (!isNull)
-                    if (!itt.isNull(tile[X, Y]))
-                        refInTile = tile[X, Y];
-
+                    if (tile.ContainsKey(X.ToString() + " " + Y.ToString()))
+                    {
+                        refInTile = tile[X.ToString() + " " + Y.ToString()];
+                        refInTile.Value.character.GetComponent<Transform>().position = new Vector2(offsetX + X * scale, -(offsetY + Y * scale));
+                        refInTile.Value.character.GetComponent<Transform>().localScale = new Vector2(scale, scale);
+                    }
+                
                 tmp.GetComponent<Grid>().tileMatris.Add(X.ToString() + " " + Y.ToString(), Tile.TileAdder(new GameObject(X.ToString() + " " + Y.ToString()), tmp, false, new inTile(), offsetX + X * scale, -(offsetY + Y * scale), scale, material));
+            
             }
         }
 
