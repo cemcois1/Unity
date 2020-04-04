@@ -34,7 +34,7 @@ public class Grid : MonoBehaviour
                     if (tile.ContainsKey(X.ToString() + " " + Y.ToString()))
                     {
                         refInTile = tile[X.ToString() + " " + Y.ToString()];
-                        refInTile.Value.character.GetComponent<Transform>().position = new Vector3(offsetX + X * scale, -(offsetY + Y * scale), -0.1f);
+                        refInTile.Value.character.GetComponent<Transform>().position = new Vector2(offsetX + X * scale, -(offsetY + Y * scale));
                         refInTile.Value.character.GetComponent<Transform>().localScale = new Vector2(scale, scale);
                     }
                 
