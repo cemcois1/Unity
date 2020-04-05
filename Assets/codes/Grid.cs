@@ -8,7 +8,6 @@ public class Grid : MonoBehaviour
 {
     private Vector2 matrisSize;
     private Dictionary<string,GameObject> tileMatris;
-    private GameObject gameObject;
     private Vector2 offset;
     private int size;
 

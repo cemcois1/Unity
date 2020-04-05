@@ -5,8 +5,6 @@ using UnityEngine;
 public class CharacterValueControlCode : MonoBehaviour
 {
     public int health;
-    public string name;
-    public string tag;
     public Dictionary<string, Animation> animationlist;
     public Stats characterstats;
     public Dictionary<string, AudioSource> soundList;

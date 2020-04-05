@@ -4,8 +4,6 @@ using UnityEngine;
 public class Character : ScriptableObject
 {
     [SerializeField] public int health;
-    [SerializeField] public string name;
-    [SerializeField] public string tag;
     [SerializeField] public Dictionary<string, Animation> animationlist;
     [SerializeField] public Stats characterstats;
     [SerializeField] public Dictionary<string, AudioSource> soundList;
