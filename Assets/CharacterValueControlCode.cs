@@ -10,4 +10,5 @@ public class CharacterValueControlCode : MonoBehaviour
     public Dictionary<string, AudioSource> soundList;
     public GameObject CharacterGO;
     public Dictionary<string, Animation> effectoncharacter;
+    public int movePoint;
 }

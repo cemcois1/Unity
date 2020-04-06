@@ -2,24 +2,32 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum Buttons { 
+public enum ButtonAction { 
     Move,
     Melee,
     Range,
     Special,
     Special2,
+    FinishTurn,
+    Null
 }
 
 public class Controll : MonoBehaviour
 {
-    Vector2 lastObject;
-    
-    Ray ray;
-    RaycastHit2D hittedObject;
+    private Vector2 lastObject;
+    private Ray ray;
+    private RaycastHit2D hittedObject;
+    private Turn turn;
+    private ButtonAction currentAction;
+    private string whosTurn;
+    private bool isTurnPassed;
+
 
     void Start()
     {
-        Turn turn = new Turn();
+        whosTurn = turn.runTurn();
+        currentAction = ButtonAction.Null;
+        turn = new Turn(new string[] { "Chracter", "Hostile" });
     }
 
     void Update()
@@ -28,33 +36,49 @@ public class Controll : MonoBehaviour
         hittedObject = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity);
         if (Input.GetMouseButtonDown(0))
         {
-            Debug.Log(hittedObject.collider.gameObject.name);
-            //if (Turn.IsPlayerTurn())
-            //{
-            switch (hittedObject.collider.gameObject.tag)
+            switch (currentAction)
             {
-                case null:
+                case ButtonAction.Null:
                     Debug.Log("Null");
                     break;
 
-                case "Tile":
+                case ButtonAction.Move:
                     this.gridHit(hittedObject);
                     break;
 
-                case "Chracter":
+                case ButtonAction.Melee:
                     Debug.Log("asdf");
                     break;
 
+                case ButtonAction.Range:
+                    break;
+
+                case ButtonAction.Special:
+                    break;
+
+                case ButtonAction.Special2:
+                    break;
+
+                case ButtonAction.FinishTurn:
+                    break;
+
             }
-                
-            //}
+
+            //hittedObject.collider.gameObject.tag
         }
     }
 
+
+
+
     public void gridHit(RaycastHit2D paramHittedObject)
     {
-        if((lastObject.x == GameObject.Find(hittedObject.collider.name).GetComponent<Tile>().getMatrisCordinate().x) && (lastObject.y == GameObject.Find(hittedObject.collider.name).GetComponent<Tile>().getMatrisCordinate().y))
+        if ((lastObject.x == GameObject.Find(hittedObject.collider.name).GetComponent<Tile>().getMatrisCordinate().x) && (lastObject.y == GameObject.Find(hittedObject.collider.name).GetComponent<Tile>().getMatrisCordinate().y))
+        {
             GameObject.Find("Grid").GetComponent<Grid>().unHighlightTiles(lastObject);
+            lastObject = new Vector2(-1 ,-1);
+        }
+
         else
         {
             GameObject.Find("Grid").GetComponent<Grid>().unHighlightTiles(lastObject);

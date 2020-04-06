@@ -9,5 +9,6 @@ public class Character : ScriptableObject
     [SerializeField] public Dictionary<string, AudioSource> soundList;
     [SerializeField] public GameObject CharacterGO;
     [SerializeField] public Dictionary<string, Animation> effectoncharacter;
+    [SerializeField] public int movePoint;
 
 }

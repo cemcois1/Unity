@@ -7,6 +7,7 @@ TagManager:
   - Tile
   - Chracter
   - Button
+  - Hostile
   layers:
   - Default
   - TransparentFX

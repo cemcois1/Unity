@@ -11,23 +11,17 @@ public class Turn
     private Dictionary<string, int> turnDict;
     private int turnTime;
 
-    public Turn() {
+    public Turn(string[] tags ) {
         this.turnDict = new Dictionary<string, int>();
-        
-        GameObject[] objects = GameObject.FindGameObjectsWithTag("Chracter");
-        foreach (GameObject obj in objects) {
-            this.turnDict.Add(obj.name, STARTVALUE++);
-        }
-        
-        objects = GameObject.FindGameObjectsWithTag("Hostile");
-        foreach (GameObject obj in objects) {
-            this.turnDict.Add(obj.name, STARTVALUE++);
-        }
+
+        foreach (string name in tags) 
+            foreach (GameObject obj in GameObject.FindGameObjectsWithTag(name))
+                this.turnDict.Add(obj.name, STARTVALUE++);
 
         this.turnTime = 0;
     }
 
-    public Dictionary<string, int> calcNTurn(int n = 1) {
+    private Dictionary<string, int> calcNTurn(int n = 1) {
         for (int i = 0; i < n; i++)
         {
             foreach (string name in this.turnDict.Keys)
@@ -39,7 +33,7 @@ public class Turn
         }
         return this.turnDict;
     }
-    /*
+    
     private string whosTurn(Dictionary<string, int> input) {
         List<string> belowZero = new List<string>();
 
@@ -48,18 +42,31 @@ public class Turn
                 belowZero.Add(name);
         }
 
+        if (belowZero.Count == 0)
+            return null;
+
         if (belowZero.Count == 1)
             return belowZero.ToArray()[0];
-        for(int i = 1; i< bew)
-        return belowZero.ToArray()[new System.Random().Next(0 , belowZero.Count)];
-        
+
+        string chosenOne = belowZero.ToArray()[new System.Random().Next(0, belowZero.Count)];
+        belowZero.Remove(chosenOne);
+
+        foreach (string name in belowZero)
+            this.turnDict[name] = 0;
+
+        return chosenOne;
     }
 
-    public string runNTurn(int n = 1) {
-        for (int i = 0; i < n; i++) { 
-            
+    public string runTurn( ) {
+        string retName = this.whosTurn( this.turnDict );
+
+        if (retName == null){
+            this.calcNTurn(1);
+            return this.runTurn();   
         }
-    
+
+        return retName;
+
     }
-    */
+    
 }
