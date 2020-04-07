@@ -12,6 +12,10 @@ public enum ButtonAction {
     Null
 }
 
+public class ButtonActionTool { 
+    
+}
+
 public class Controll : MonoBehaviour
 {
     private Vector2 lastObject;
@@ -25,21 +29,21 @@ public class Controll : MonoBehaviour
 
     void Start()
     {
-        whosTurn = turn.runTurn();
         currentAction = ButtonAction.Null;
         turn = new Turn(new string[] { "Chracter", "Hostile" });
     }
 
     void Update()
     {
+        int layerMask = LayerMask.GetMask("UI");
         ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        hittedObject = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity);
+        hittedObject = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity , layerMask);
         if (Input.GetMouseButtonDown(0))
         {
             switch (currentAction)
             {
                 case ButtonAction.Null:
-                    Debug.Log("Null");
+                    this.gridHit(hittedObject);
                     break;
 
                 case ButtonAction.Move:
@@ -68,7 +72,9 @@ public class Controll : MonoBehaviour
         }
     }
 
+    public void setCurrentAction(ButtonAction action) { this.currentAction = action; }
 
+    public ButtonAction getCurrentAction () { return this.currentAction; }
 
 
     public void gridHit(RaycastHit2D paramHittedObject)

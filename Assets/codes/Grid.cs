@@ -12,6 +12,7 @@ public class Grid : MonoBehaviour
     private int size;
 
     private Grid() { }
+
     public static GameObject gridStart(int matrisX, int matrisY, float offsetX, float offsetY, float scale, Material material, Dictionary<string,inTile> tile = null)
     {
         GameObject tmp = new GameObject("Grid");
