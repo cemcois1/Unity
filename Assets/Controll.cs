@@ -1,6 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public enum ButtonAction { 
     Move,
@@ -21,60 +24,93 @@ public class Controll : MonoBehaviour
     private Vector2 lastObject;
     private Ray ray;
     private RaycastHit2D hittedObject;
-    private Turn turn;
+
     private ButtonAction currentAction;
+   
+    private GraphicRaycaster graphicsRaycaster;
+    private Turn turn;
+
     private string whosTurn;
     private bool isTurnPassed;
-
 
     void Start()
     {
         currentAction = ButtonAction.Null;
         turn = new Turn(new string[] { "Chracter", "Hostile" });
+
+        graphicsRaycaster = GameObject.Find("Canvas").GetComponent<GraphicRaycaster>();
+
     }
 
     void Update()
     {
-        int layerMask = LayerMask.GetMask("UI");
-        ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        hittedObject = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity , layerMask);
+        whosTurn = turn.runTurn();
+
         if (Input.GetMouseButtonDown(0))
         {
-            switch (currentAction)
-            {
-                case ButtonAction.Null:
-                    this.gridHit(hittedObject);
-                    break;
+            ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            hittedObject = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity);
+         
+            if (hittedObject.collider != null)
+                switch (currentAction)
+                {
+                    case ButtonAction.Null:
+                        break;
 
-                case ButtonAction.Move:
-                    this.gridHit(hittedObject);
-                    break;
+                    case ButtonAction.Move:
+                        //this.moveFunc(hittedObject);
+                        break;
 
-                case ButtonAction.Melee:
-                    Debug.Log("asdf");
-                    break;
+                    case ButtonAction.Melee:
+                        //this.meleeFunc(hittedObject);
+                        break;
 
-                case ButtonAction.Range:
-                    break;
+                    case ButtonAction.Range:
+                        //this.rangeFunc(hittedObject);
+                        break;
 
-                case ButtonAction.Special:
-                    break;
+                    case ButtonAction.Special:
+                        //this.specialFunc(hittedObject);
+                        break;
 
-                case ButtonAction.Special2:
-                    break;
+                    case ButtonAction.Special2:
+                        //this.special2Func(hittedObject);
+                        break;
 
-                case ButtonAction.FinishTurn:
-                    break;
+                    case ButtonAction.FinishTurn:
+                        if (GameObject.Find(whosTurn).GetComponent<CharacterValueControlCode>().characterstats.getStat<int>(Stat.actionPoint) == 0)
+                            this.currentAction = ButtonAction.Melee;
+                        //  this.finishTurn();
+
+                        else
+                            this.currentAction = ButtonAction.Melee;
+                        //this.highlightActionPoint();
+
+                        break;
+                }
+
+            else {
+                List<RaycastResult> graphRaycast = new List<RaycastResult>();
+                
+                PointerEventData pointerEvent = new UnityEngine.EventSystems.PointerEventData(null);
+                pointerEvent.position = Input.mousePosition;
+
+                graphicsRaycaster.Raycast(pointerEvent, graphRaycast );
+                
+                graphRaycast[1].gameObject.GetComponent<ButtonCode>().OnMouseUp();
+                
 
             }
 
-            //hittedObject.collider.gameObject.tag
         }
     }
-
+    
     public void setCurrentAction(ButtonAction action) { this.currentAction = action; }
 
     public ButtonAction getCurrentAction () { return this.currentAction; }
+
+
+
 
 
     public void gridHit(RaycastHit2D paramHittedObject)
@@ -91,5 +127,6 @@ public class Controll : MonoBehaviour
             lastObject = GameObject.Find(hittedObject.collider.name).GetComponent<Tile>().getMatrisCordinate();
             GameObject.Find("Grid").GetComponent<Grid>().highlightTiles(lastObject);
         }
+    
     }
 }

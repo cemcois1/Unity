@@ -11,7 +11,7 @@ public class ButtonCode : MonoBehaviour
     }
 
     // Update is called once per frame
-    void OnMouseUp()
+    public void OnMouseUp()
     {
         int tmp = 0;
         ButtonAction retValue = ButtonAction.Null;

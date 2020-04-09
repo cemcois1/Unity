@@ -26,7 +26,7 @@ public class Turn
         {
             foreach (string name in this.turnDict.Keys)
             {
-                this.turnDict[name] -= GameObject.Find(name).GetComponent<Character>().characterstats.getReflex();
+                this.turnDict[name] -= GameObject.Find(name).GetComponent<Character>().characterstats.getStat<int>(Stat.reflex);
             }
 
             this.turnTime++;

@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 [CreateAssetMenu(fileName = "StatExamples", menuName = "Statpoints", order = 3)]
+
 public class Stats : ScriptableObject
 {
     [SerializeField] private int maxHealth;
     [SerializeField] private int meleeDamage;
     [SerializeField] private int rangeDamage;
-    [SerializeField] private int defance;
+    [SerializeField] private int defence;
     [SerializeField] private int attackRange;
     [SerializeField] private int moveRange;
     [SerializeField] private int runRange;
@@ -16,53 +17,141 @@ public class Stats : ScriptableObject
     [SerializeField] private int meleeWeaponSkill;
     [SerializeField] private int rangeWeaponSkill;
     [SerializeField] private int reflex;
+    [SerializeField] private int actionPoint;
     [SerializeField] private float regenerationSkill;
 
-    public void setmaxHealth(int Health) { maxHealth = Health; }
-    public int getMaxHealth() { return maxHealth; }
+    public type getStat<type>(Stat name) {
+        System.Object retValue = 0;
 
-    public void setMeleeDamage(int Damage) { meleeDamage = Damage; }
-    public int getMeleeDamage() { return meleeDamage; }
+        switch ((int)name) {
+            case 0:
+                retValue = this.maxHealth;
+                return (type)retValue;
 
-    public void setRangeDamage(int Damage) { rangeDamage = Damage; }
-    public int getRangeDamage() { return rangeDamage; }
+            case 1:
+                retValue = this.meleeDamage;
+                return (type)retValue;
 
+            case 2:
+                retValue = this.rangeDamage;
+                return (type)retValue;
 
-    public void setDefance(int defance) { this.defance = defance; }
-    public int getDefance() { return defance; }
+            case 3:
+                retValue = this.defence;
+                return (type)retValue;
 
+            case 4:
+                retValue = this.attackRange;
+                return (type)retValue;
 
-    public void setAttackRange(int range) { attackRange = range; }
-    public int getAttackrange() { return attackRange; }
+            case 5:
+                retValue = this.moveRange;
+                return (type)retValue;
 
+            case 6:
+                retValue = this.runRange;
+                return (type)retValue;
 
-    public void setMoveRange(int range) { moveRange = range; }
-    public int getMoveRange() { return moveRange; }
+            case 7:
+                retValue = this.completition;
+                return (type)retValue;
 
+            case 8:
+                retValue = this.info;
+                return (type)retValue;
 
-    public void setrunRange(int range) { runRange = range; }
-    public int getrunRange() { return runRange; }
+            case 9:
+                retValue = this.meleeWeaponSkill;
+                return (type)retValue;
 
+            case 10:
+                retValue = this.rangeWeaponSkill;
+                return (type)retValue;
 
-    public void setcompletition(int newCompletitionValue) { completition = newCompletitionValue; }
-    public int getcompletition() { return completition; }
+            case 11:
+                retValue = this.reflex;
+                return (type)retValue;
 
-    public void setinfo(int newValue) { info = newValue; }
-    public int getinfo() { return info; }
+            case 12:
+                retValue = this.actionPoint;
+                return (type)retValue;
 
+            case 13:
+                retValue = this.regenerationSkill;
+                return (type)retValue;
 
-    public void setmeleeWeaponSkill(int newMeleWeaponskill) { meleeWeaponSkill = newMeleWeaponskill; }
-    public int getmeleeWeaponSkill() { return meleeWeaponSkill; }
+            default:
+                return (type)retValue;
+        }
 
-    public void setrangeWeaponSkill(int newValue) { rangeWeaponSkill = newValue; }
-    public int getrangeWeaponSkill() { return rangeWeaponSkill; }
+    }
 
+    public void setStat<type>(Stat name , type value)
+    {
+        System.Object retValue = value;
 
-    public void setReflex(int reflex) { this.reflex = reflex; }
-    public int getReflex() { return this.reflex; }
+        switch ((int)name)
+        {
+            case 0:
+                this.maxHealth = (int)retValue ;
+                break;
 
+            case 1:
+                this.meleeDamage = (int)retValue;
+                break;
 
-    public void setregenerationSkill(int newValue) { regenerationSkill = newValue; }
-    public float getregenerationSkill() { return regenerationSkill; }
+            case 2:
+                this.rangeDamage = (int)retValue;
+                break;
+
+            case 3:
+                this.defence = (int)retValue;
+                break;
+
+            case 4:
+                this.attackRange = (int)retValue;
+                break;
+
+            case 5:
+                this.moveRange = (int)retValue;
+                break;
+
+            case 6:
+                this.runRange = (int)retValue;
+                break;
+
+            case 7:
+                this.completition = (int)retValue;
+                break;
+
+            case 8:
+                this.info = (int)retValue;
+                break;
+
+            case 9:
+                this.meleeWeaponSkill = (int)retValue;
+                break;
+
+            case 10:
+                this.rangeWeaponSkill = (int)retValue;
+                break;
+
+            case 11:
+                this.reflex = (int)retValue;
+                break;
+
+            case 12:
+                this.actionPoint = (int)retValue;
+                break;
+
+            case 13:
+                this.regenerationSkill = (float)retValue;
+                break;
+
+            default:
+                break;
+        }
+
+    }
 
 }
