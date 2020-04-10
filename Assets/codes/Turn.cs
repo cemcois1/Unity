@@ -24,10 +24,10 @@ public class Turn
     private Dictionary<string, int> calcNTurn(int n = 1) {
         for (int i = 0; i < n; i++)
         {
-            foreach (string name in this.turnDict.Keys)
+            List<string> keys = new List<string>(this.turnDict.Keys);
+            foreach (string name in keys)
             {
-                int asd = GameObject.Find(name).GetComponent<Character>().characterstats.getStat<int>(Stat.reflex);
-                this.turnDict[name] -= GameObject.Find(name).GetComponent<Character>().characterstats.getStat<int>(Stat.reflex);
+                this.turnDict[name] -= GameObject.Find(name).GetComponent<CharacterValue>().characterstats.getStat<int>(Stat.reflex);
             }
 
             this.turnTime++;
@@ -67,7 +67,9 @@ public class Turn
         }
 
         return retName;
-
     }
-    
+
+    public void resetCharacter(string name) {
+        this.turnDict[name] = STARTVALUE++;
+    }
 }

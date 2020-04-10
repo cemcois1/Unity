@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 [CreateAssetMenu(fileName = "StatExamples", menuName = "Statpoints", order = 3)]
 
+[SerializeField]
 public class Stats : ScriptableObject
 {
     [SerializeField] private int maxHealth;

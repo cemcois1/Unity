@@ -7,6 +7,7 @@ using UnityEngine;
 public class Grid : MonoBehaviour
 {
     private Vector2 matrisSize;
+    private Dictionary<string, Vector2> charPosition;
     private Dictionary<string,GameObject> tileMatris;
     private Vector2 offset;
     private int size;
@@ -17,25 +18,29 @@ public class Grid : MonoBehaviour
     {
         GameObject tmp = new GameObject("Grid");
         tmp.AddComponent<Grid>();
-        tmp.GetComponent<Grid>().matrisSize = new Vector2(matrisX, matrisY);
 
+        tmp.GetComponent<Grid>().matrisSize = new Vector2(matrisX, matrisY);
         tmp.GetComponent<Grid>().tileMatris = new Dictionary<string, GameObject>();
+        tmp.GetComponent<Grid>().charPosition = new Dictionary<string, Vector2>();
 
         bool isNull = (tile == null? true: false);
 
-        inTile? refInTile;
+        inTile refInTile;
         inTileTool itt = new inTileTool();
 
         for (int X = 0; X < matrisX; X++) {
             for (int Y = 0; Y < matrisY; Y++) {
-                refInTile = null;
+                refInTile = new inTile();
             
                 if (!isNull)
                     if (tile.ContainsKey(X.ToString() + " " + Y.ToString()))
                     {
                         refInTile = tile[X.ToString() + " " + Y.ToString()];
-                        refInTile.Value.character.GetComponent<Transform>().position = new Vector3(offsetX + X * scale, -(offsetY + Y * scale), -0.1f);
-                        refInTile.Value.character.GetComponent<Transform>().localScale = new Vector2(scale, scale);
+
+                        if (inTileTool.whatInIt(refInTile) == TileObject.Character)
+                            tmp.GetComponent<Grid>().charPosition.Add( refInTile.character.name, new Vector2(X,Y));
+                        refInTile.character.GetComponent<Transform>().position = new Vector3(offsetX + X * scale, -(offsetY + Y * scale), -0.1f);
+                        refInTile.character.GetComponent<Transform>().localScale = new Vector2(scale, scale);
                     }
                 
                 tmp.GetComponent<Grid>().tileMatris.Add(X.ToString() + " " + Y.ToString(), Tile.TileAdder(new GameObject(X.ToString() + " " + Y.ToString()), tmp, false, new inTile(), offsetX + X * scale, -(offsetY + Y * scale), scale, material));
@@ -56,14 +61,74 @@ public class Grid : MonoBehaviour
         return (float)Math.Pow(Math.Sqrt(vector2.x < vector1.x ? vector1.x - vector2.x : vector2.x - vector1.x) + Math.Sqrt(vector2.y < vector1.y ? vector1.y - vector2.y : vector2.y - vector1.y), 0.5f);
     }
 
-    public void highlightTiles(Vector2 cordinate) {
+    public Vector2 whereIsChar(string name) {
+        List<string> tmp = new List<string>(this.charPosition.Keys);
+        foreach (string feName in tmp)
+            if (feName == name)
+                return this.charPosition[name];
+
+        return new Vector2(-1,-1);
+    }
+
+
+    public void highlightTiles(Vector2 cordinate , ButtonAction action ) {
         Grid tmp = GameObject.Find("Grid").GetComponent<Grid>();
-        int llll = 3;
-        for (int x = (int)cordinate.x - llll < 0 ? 0 : (int)cordinate.x - llll; x <= (int)cordinate.x + llll; x++) {
-            for (int y = (int)cordinate.y - llll < 0 ? 0 : (int)cordinate.y - llll; y <= (int)cordinate.y + llll; y++)
+
+        int highlightArea;
+        Color highlightColor;
+
+        switch (action) {
+            case (ButtonAction.Move):
+                highlightArea = tmp.getTile((int)cordinate.x , (int)cordinate.y).GetComponent<Tile>().getInTile<Character>().characterstats.getStat<int>(Stat.moveRange);
+                highlightColor = tmp.getTile((int)cordinate.x, (int)cordinate.y).GetComponent<CharacterValue>().charColors.getColor(ButtonAction.Move);
+                break;
+
+            case (ButtonAction.Range):
+                highlightArea = tmp.getTile((int)cordinate.x, (int)cordinate.y).GetComponent<Tile>().getInTile<Character>().characterstats.getStat<int>(Stat.attackRange);
+                highlightColor = tmp.getTile((int)cordinate.x, (int)cordinate.y).GetComponent<CharacterValue>().charColors.getColor(ButtonAction.Range);
+                break;
+
+            case (ButtonAction.Melee):
+                highlightArea = 1;
+                highlightColor = tmp.getTile((int)cordinate.x, (int)cordinate.y).GetComponent<CharacterValue>().charColors.getColor(ButtonAction.Melee);
+                break;
+
+            case (ButtonAction.Special):
+                highlightArea = 0;
+                highlightColor = tmp.getTile((int)cordinate.x, (int)cordinate.y).GetComponent<CharacterValue>().charColors.getColor(ButtonAction.Special);
+                break;
+
+            case (ButtonAction.Special2):
+                highlightArea = 0;
+                highlightColor = tmp.getTile((int)cordinate.x, (int)cordinate.y).GetComponent<CharacterValue>().charColors.getColor(ButtonAction.Special2);
+                break;
+
+            case (ButtonAction.FinishTurn):
+                highlightArea = 0;
+                highlightColor = tmp.getTile((int)cordinate.x, (int)cordinate.y).GetComponent<CharacterValue>().charColors.getColor(ButtonAction.FinishTurn);
+                break;
+
+            case (ButtonAction.Null):
+                highlightArea = 0;
+                highlightColor = tmp.getTile((int)cordinate.x, (int)cordinate.y).GetComponent<CharacterValue>().charColors.getColor(ButtonAction.Null);
+                break;
+
+            default:
+                highlightArea = 0;
+                highlightColor = Color.white;
+                break;
+        }
+        
+        
+        
+        for (int x = (int)cordinate.x - highlightArea < 0 ? 0 : (int)cordinate.x - highlightArea; x <= (int)cordinate.x + highlightArea; x++) {
+            for (int y = (int)cordinate.y - highlightArea < 0 ? 0 : (int)cordinate.y - highlightArea; y <= (int)cordinate.y + highlightArea; y++)
             {
-                if (Grid.calDistanceBetTile(new Vector2(x, y), cordinate) < Math.Pow(llll, 0.5f)) {
-                    tmp.getTile(x,y).GetComponent<Tile>().highlightTile();
+                if (cordinate.x == x && cordinate.y == y)
+                    continue;
+
+                if (Grid.calDistanceBetTile(new Vector2(x, y), cordinate) < Math.Pow(highlightArea, 0.5f)) {
+                    tmp.getTile(x,y).GetComponent<Tile>().highlightTile(highlightColor);
                 }
             }
         }

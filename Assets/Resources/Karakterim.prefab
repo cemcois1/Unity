@@ -46,10 +46,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e40d183e412bf34585216e8218b6146, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
+  health: 100
   characterstats: {fileID: 11400000, guid: 68a1dc8c8d1344642a47ba0e0b2f05ea, type: 2}
   CharacterGO: {fileID: 0}
-  movePoint: 0
+  movePoint: 2
+  charColors: {fileID: 11400000, guid: 7c57551056a610d4eb6290b6c6633c83, type: 2}
 --- !u!331 &3712690913334143178
 SpriteMask:
   m_ObjectHideFlags: 0

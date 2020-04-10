@@ -23,7 +23,7 @@ public class tileoluşturmakodu : MonoBehaviour
         inTile refInTile = new inTile();
         refInTile.character = Instantiate((GameObject)Resources.Load<GameObject>("Karakterim"));
         
-        refDic.Add("1 1", refInTile);
+        refDic.Add("5 5", refInTile);
 
         GameObject grid = Grid.gridStart(sizex , sizey , offsetX , offsetY , (float)scale , material ,refDic);
     }

@@ -17,8 +17,8 @@ MonoBehaviour:
   rangeDamage: 5
   defence: 0
   attackRange: 2
-  moveRange: 999
-  runRange: 999
+  moveRange: 4
+  runRange: 7
   completition: 1
   info: 30
   meleeWeaponSkill: 999

@@ -10,5 +10,6 @@ public class Character : ScriptableObject
     [SerializeField] public GameObject CharacterGO;
     [SerializeField] public Dictionary<string, Animation> effectoncharacter;
     [SerializeField] public int movePoint;
+    [SerializeField] public Colors charColors;
 
 }

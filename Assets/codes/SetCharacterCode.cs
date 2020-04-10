@@ -26,7 +26,7 @@ public class SetCharacterCode : MonoBehaviour
 {
     public Character CV;
     public GameObject characterprefab;
-    private CharacterValueControlCode code;
+    private CharacterValue code;
 
     void Start()
     {/*

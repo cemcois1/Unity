@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterValueControlCode : MonoBehaviour
+public class CharacterValue : MonoBehaviour
 {
     public int health;
     public Dictionary<string, Animation> animationlist;
@@ -11,4 +11,5 @@ public class CharacterValueControlCode : MonoBehaviour
     public GameObject CharacterGO;
     public Dictionary<string, Animation> effectoncharacter;
     public int movePoint;
+    public Colors charColors;
 }

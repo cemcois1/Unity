@@ -17,7 +17,7 @@ public struct inTile
 
 public class inTileTool
 {
-    public bool isNull(inTile tile)
+    public static bool isNull(inTile tile)
     {
         if (tile.cover == null)
             if (tile.character == null)
@@ -25,6 +25,18 @@ public class inTileTool
 
         return false;
     }
+
+    public static TileObject whatInIt(inTile referance) {
+        if (referance.character != null)
+            return TileObject.Character;
+
+        else if (referance.cover != null)
+            return TileObject.Cover;
+
+        else
+            return TileObject.Null;
+    }
+
 }
 
 
@@ -158,10 +170,10 @@ public class Tile : MonoBehaviour
         throw new System.InvalidOperationException();
     }
 
-    public void highlightTile()
+    public void highlightTile(Color color)
     {
         isHighlishted = !isHighlishted;
-        GameObject.Find(this.gameObject.name).GetComponent<MeshRenderer>().material.color = Color.white;
+        GameObject.Find(this.gameObject.name).GetComponent<MeshRenderer>().material.color = color;
     }
 
     public void unHighlightTile()
@@ -175,7 +187,7 @@ public class Tile : MonoBehaviour
         switch (GameObject.Find(this.gameObject.name).GetComponent<Tile>().isHighlishted)
         {
             case false:
-                GameObject.Find(this.gameObject.name).GetComponent<Tile>().highlightTile();
+                GameObject.Find(this.gameObject.name).GetComponent<Tile>().highlightTile(Color.white);
                 break;
 
             case true:

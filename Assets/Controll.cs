@@ -38,15 +38,17 @@ public class Controll : MonoBehaviour
         turn = new Turn(new string[] { "Chracter", "Hostile" });
 
         graphicsRaycaster = GameObject.Find("Canvas").GetComponent<GraphicRaycaster>();
+        whosTurn = turn.runTurn();
 
+        lastObject = GameObject.Find("Grid").GetComponent<Grid>().whereIsChar(whosTurn);
     }
 
     void Update()
     {
-        whosTurn = turn.runTurn();
-
+     
         if (Input.GetMouseButtonDown(0))
         {
+
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             hittedObject = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity);
          
@@ -77,7 +79,7 @@ public class Controll : MonoBehaviour
                         break;
 
                     case ButtonAction.FinishTurn:
-                        if (GameObject.Find(whosTurn).GetComponent<CharacterValueControlCode>().characterstats.getStat<int>(Stat.actionPoint) == 0)
+                        if (GameObject.Find(whosTurn).GetComponent<CharacterValue>().characterstats.getStat<int>(Stat.actionPoint) == 0)
                             this.currentAction = ButtonAction.Melee;
                         //  this.finishTurn();
 
@@ -97,6 +99,7 @@ public class Controll : MonoBehaviour
                 graphicsRaycaster.Raycast(pointerEvent, graphRaycast );
                 
                 graphRaycast[1].gameObject.GetComponent<ButtonCode>().OnMouseUp();
+                changeHighlight();
                 
 
             }
@@ -109,6 +112,10 @@ public class Controll : MonoBehaviour
     public ButtonAction getCurrentAction () { return this.currentAction; }
 
 
+    public void changeHighlight() {
+        GameObject.Find("Grid").GetComponent<Grid>().unHighlightTiles(lastObject);
+        GameObject.Find("Grid").GetComponent<Grid>().highlightTiles(lastObject, currentAction);
+    }
 
 
 
@@ -124,7 +131,7 @@ public class Controll : MonoBehaviour
         {
             GameObject.Find("Grid").GetComponent<Grid>().unHighlightTiles(lastObject);
             lastObject = GameObject.Find(hittedObject.collider.name).GetComponent<Tile>().getMatrisCordinate();
-            GameObject.Find("Grid").GetComponent<Grid>().highlightTiles(lastObject);
+            GameObject.Find("Grid").GetComponent<Grid>().highlightTiles(lastObject , currentAction);
         }
     
     }
