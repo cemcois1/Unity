@@ -26,7 +26,6 @@ public class tileoluşturmakodu : MonoBehaviour
         refDic.Add("1 1", refInTile);
 
         GameObject grid = Grid.gridStart(sizex , sizey , offsetX , offsetY , (float)scale , material ,refDic);
-    
     }
 
 }

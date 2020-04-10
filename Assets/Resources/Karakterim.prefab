@@ -47,10 +47,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
-  name: 
-  tag: 
-  characterstats: {fileID: 0}
+  characterstats: {fileID: 11400000, guid: 68a1dc8c8d1344642a47ba0e0b2f05ea, type: 2}
   CharacterGO: {fileID: 0}
+  movePoint: 0
 --- !u!331 &3712690913334143178
 SpriteMask:
   m_ObjectHideFlags: 0

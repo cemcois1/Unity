@@ -15,7 +15,7 @@ MonoBehaviour:
   maxHealth: 10
   meleeDamage: 3
   rangeDamage: 5
-  defance: 99
+  defence: 0
   attackRange: 2
   moveRange: 999
   runRange: 999
@@ -23,4 +23,6 @@ MonoBehaviour:
   info: 30
   meleeWeaponSkill: 999
   rangeWeaponSkill: 10
+  reflex: 1
+  actionPoint: 2
   regenerationSkill: 999

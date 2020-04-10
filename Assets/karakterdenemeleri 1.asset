@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: karakterdenemeleri 1
   m_EditorClassIdentifier: 
   health: 1453
-  name: "Cemal Adam\u0131n Dibidir"
-  tag: DENEME
   characterstats: {fileID: 11400000, guid: 68a1dc8c8d1344642a47ba0e0b2f05ea, type: 2}
   CharacterGO: {fileID: 1272898736425012419, guid: d02b7cd42c9a6584dbf664bb3c5c7a12,
     type: 3}
+  movePoint: 2
