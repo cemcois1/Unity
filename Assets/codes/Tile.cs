@@ -44,7 +44,7 @@ public class Tile : MonoBehaviour
 {
     private bool isHighlishted = false;
     private bool isReachable;
-    private Color defaultColor;
+    public Color defaultColor;
     private inTile whatsInTile;
     private Vector2 matrisCor;
 
