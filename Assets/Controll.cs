@@ -99,7 +99,7 @@ public class Controll : MonoBehaviour
                 graphicsRaycaster.Raycast(pointerEvent, graphRaycast );
                 
                 graphRaycast[1].gameObject.GetComponent<ButtonCode>().OnMouseUp();
-                changeHighlight();
+                GameObject.Find("Grid").GetComponent<Grid>().tileHighlighter(lastObject , currentAction);
                 
 
             }
@@ -112,24 +112,15 @@ public class Controll : MonoBehaviour
     public ButtonAction getCurrentAction () { return this.currentAction; }
 
 
-    public void changeHighlight() {
-        GameObject.Find("Grid").GetComponent<Grid>().unHighlightTiles(lastObject);
-        GameObject.Find("Grid").GetComponent<Grid>().highlightTiles(lastObject, currentAction);
-    }
-
-
-
     public void gridHit(RaycastHit2D paramHittedObject)
     {
         if ((lastObject.x == GameObject.Find(hittedObject.collider.name).GetComponent<Tile>().getMatrisCordinate().x) && (lastObject.y == GameObject.Find(hittedObject.collider.name).GetComponent<Tile>().getMatrisCordinate().y))
         {
-            GameObject.Find("Grid").GetComponent<Grid>().unHighlightTiles(lastObject);
             lastObject = new Vector2(-1 ,-1);
         }
 
         else
         {
-            GameObject.Find("Grid").GetComponent<Grid>().unHighlightTiles(lastObject);
             lastObject = GameObject.Find(hittedObject.collider.name).GetComponent<Tile>().getMatrisCordinate();
             GameObject.Find("Grid").GetComponent<Grid>().highlightTiles(lastObject , currentAction);
         }

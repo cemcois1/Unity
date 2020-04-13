@@ -149,6 +149,10 @@ public class Tile : MonoBehaviour
         throw new System.InvalidOperationException();
     }
 
+    public GameObject getInTileChracter() {
+        return this.whatsInTile.character;
+    }
+
     public T getInTileWithRemove<T>()
     {
         System.Object tmp;

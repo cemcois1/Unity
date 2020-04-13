@@ -7,10 +7,14 @@ using UnityEngine;
 public class Grid : MonoBehaviour
 {
     private Vector2 matrisSize;
+    private Vector2 offset;
+
     private Dictionary<string, Vector2> charPosition;
     private Dictionary<string, GameObject> tileMatris;
-    private Vector2 offset;
+    
     private int size;
+
+    private ButtonAction lastAction;
 
     private Grid() { }
 
@@ -45,7 +49,7 @@ public class Grid : MonoBehaviour
                         refInTile.character.GetComponent<Transform>().localScale = new Vector2(scale, scale);
                     }
 
-                tmp.GetComponent<Grid>().tileMatris.Add(X.ToString() + " " + Y.ToString(), Tile.TileAdder(new GameObject(X.ToString() + " " + Y.ToString()), tmp, false, new inTile(), offsetX + X * scale, -(offsetY + Y * scale), scale, material));
+                tmp.GetComponent<Grid>().tileMatris.Add(X.ToString() + " " + Y.ToString(), Tile.TileAdder(new GameObject(X.ToString() + " " + Y.ToString()), tmp, false, refInTile, offsetX + X * scale, -(offsetY + Y * scale), scale, material));
 
             }
         }
@@ -57,14 +61,11 @@ public class Grid : MonoBehaviour
     {
         if (matrisSize.x < x || matrisSize.y < y)
         {
-            Debug.Log("Hata Alındı");
             return null;
         }
         else
         {
-            return tileMatris[x.ToString() + " " + y.ToString()];
-            Debug.Log("Hata Alındı");
-
+            return this.tileMatris[x.ToString() + " " + y.ToString()];
         }
 
     }
@@ -88,7 +89,6 @@ public class Grid : MonoBehaviour
     public void highlightTiles(Vector2 cordinate, ButtonAction action)
     {
         Grid tmp = GameObject.Find("Grid").GetComponent<Grid>();
-        Debug.Log(tmp.name);
 
         int highlightArea;
         Color highlightColor;
@@ -96,40 +96,38 @@ public class Grid : MonoBehaviour
         switch (action)
         {
             case (ButtonAction.Move):
-                Debug.Log("cordinate.x= "+ cordinate.x+ " cordinate.y="+ cordinate.y);
-                highlightArea = tmp.getTile((int)cordinate.x, (int)cordinate.y).GetComponent<Tile>().getInTile<Character>().characterstats.getStat<int>(Stat.moveRange);
-                Debug.Log((int)highlightArea);
-                highlightColor = tmp.getTile((int)cordinate.x, (int)cordinate.y).GetComponent<CharacterValue>().charColors.getColor(ButtonAction.Move);
+                highlightArea = tmp.getTile((int)cordinate.x, (int)cordinate.y).GetComponent<Tile>().getInTileChracter().GetComponent<CharacterValue>().characterstats.getStat<int>(Stat.moveRange);
+                highlightColor = tmp.getTile((int)cordinate.x, (int)cordinate.y).GetComponent<Tile>().getInTileChracter().GetComponent<CharacterValue>().charColors.getColor(ButtonAction.Move);
                 break;
 
             case (ButtonAction.Range):
-                highlightArea = tmp.getTile((int)cordinate.x, (int)cordinate.y).GetComponent<Tile>().getInTile<Character>().characterstats.getStat<int>(Stat.attackRange);
-                highlightColor = tmp.getTile((int)cordinate.x, (int)cordinate.y).GetComponent<CharacterValue>().charColors.getColor(ButtonAction.Range);
+                highlightArea = tmp.getTile((int)cordinate.x, (int)cordinate.y).GetComponent<Tile>().getInTileChracter().GetComponent<CharacterValue>().characterstats.getStat<int>(Stat.attackRange);
+                highlightColor = tmp.getTile((int)cordinate.x, (int)cordinate.y).GetComponent<Tile>().getInTileChracter().GetComponent<CharacterValue>().charColors.getColor(ButtonAction.Range);
                 break;
 
             case (ButtonAction.Melee):
                 highlightArea = 1;
-                highlightColor = tmp.getTile((int)cordinate.x, (int)cordinate.y).GetComponent<CharacterValue>().charColors.getColor(ButtonAction.Melee);
+                highlightColor = tmp.getTile((int)cordinate.x, (int)cordinate.y).GetComponent<Tile>().getInTileChracter().GetComponent<CharacterValue>().charColors.getColor(ButtonAction.Melee);
                 break;
 
             case (ButtonAction.Special):
                 highlightArea = 0;
-                highlightColor = tmp.getTile((int)cordinate.x, (int)cordinate.y).GetComponent<CharacterValue>().charColors.getColor(ButtonAction.Special);
+                highlightColor = tmp.getTile((int)cordinate.x, (int)cordinate.y).GetComponent<Tile>().getInTileChracter().GetComponent<CharacterValue>().charColors.getColor(ButtonAction.Special);
                 break;
 
             case (ButtonAction.Special2):
                 highlightArea = 0;
-                highlightColor = tmp.getTile((int)cordinate.x, (int)cordinate.y).GetComponent<CharacterValue>().charColors.getColor(ButtonAction.Special2);
+                highlightColor = tmp.getTile((int)cordinate.x, (int)cordinate.y).GetComponent<Tile>().getInTileChracter().GetComponent<CharacterValue>().charColors.getColor(ButtonAction.Special2);
                 break;
 
             case (ButtonAction.FinishTurn):
                 highlightArea = 0;
-                highlightColor = tmp.getTile((int)cordinate.x, (int)cordinate.y).GetComponent<CharacterValue>().charColors.getColor(ButtonAction.FinishTurn);
+                highlightColor = tmp.getTile((int)cordinate.x, (int)cordinate.y).GetComponent<Tile>().getInTileChracter().GetComponent<CharacterValue>().charColors.getColor(ButtonAction.FinishTurn);
                 break;
 
             case (ButtonAction.Null):
                 highlightArea = 0;
-                highlightColor = tmp.getTile((int)cordinate.x, (int)cordinate.y).GetComponent<CharacterValue>().charColors.getColor(ButtonAction.Null);
+                highlightColor = tmp.getTile((int)cordinate.x, (int)cordinate.y).GetComponent<Tile>().getInTileChracter().GetComponent<CharacterValue>().charColors.getColor(ButtonAction.Null);
                 break;
 
             default:
@@ -156,17 +154,64 @@ public class Grid : MonoBehaviour
 
     }
 
-    public void unHighlightTiles(Vector2 cordinate)
+    public void unHighlightTiles(Vector2 cordinate , ButtonAction action)
     {
         Grid tmp = GameObject.Find("Grid").GetComponent<Grid>();
-        int llll = 3;
-        for (int x = (int)cordinate.x - llll < 0 ? 0 : (int)cordinate.x - llll; x <= (int)cordinate.x + llll; x++)
+        int unHighlightArea = 0;
+
+        switch (action) {
+            case (ButtonAction.Null):
+                unHighlightArea = 0;
+                break;
+
+            case (ButtonAction.Move):
+                unHighlightArea = tmp.getTile((int)cordinate.x, (int)cordinate.y).GetComponent<Tile>().getInTileChracter().GetComponent<CharacterValue>().characterstats.getStat<int>(Stat.moveRange);
+                break;
+
+            case (ButtonAction.Melee):
+                unHighlightArea = 1;
+                break;
+
+            case (ButtonAction.Range):
+                unHighlightArea = tmp.getTile((int)cordinate.x, (int)cordinate.y).GetComponent<Tile>().getInTileChracter().GetComponent<CharacterValue>().characterstats.getStat<int>(Stat.attackRange);
+                break;
+
+            case (ButtonAction.Special):
+                unHighlightArea = 0;
+                break;
+
+            case (ButtonAction.Special2):
+                unHighlightArea = 0;
+                break;
+
+            case (ButtonAction.FinishTurn):
+                unHighlightArea = 0;
+                break;
+        }
+
+        for (int x = (int)cordinate.x - unHighlightArea < 0 ? 0 : (int)cordinate.x - unHighlightArea; x <= (int)cordinate.x + unHighlightArea; x++)
         {
-            for (int y = (int)cordinate.y - llll < 0 ? 0 : (int)cordinate.y - llll; y <= (int)cordinate.y + llll; y++)
+            for (int y = (int)cordinate.y - unHighlightArea < 0 ? 0 : (int)cordinate.y - unHighlightArea; y <= (int)cordinate.y + unHighlightArea; y++)
             {
                 tmp.getTile(x, y).GetComponent<Tile>().unHighlightTile();
-
             }
         }
+
     }
+
+    public void tileHighlighter(Vector2 cordinate, ButtonAction action) {
+        if (this.lastAction == action)
+        {
+            this.unHighlightTiles(cordinate, lastAction);
+            this.lastAction = ButtonAction.Null;
+        }
+        else
+        {
+            this.unHighlightTiles(cordinate, lastAction);
+            this.highlightTiles(cordinate, action);
+            this.lastAction = action;
+        }
+        
+    }
+
 }
