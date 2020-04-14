@@ -11,7 +11,7 @@ public enum TileObject
 
 public struct inTile
 {
-    public Cover cover;
+    public GameObject cover;
     public GameObject character;
 }
 
@@ -117,7 +117,7 @@ public class Tile : MonoBehaviour
         if (this.isTileFull())
             return false;
 
-        this.whatsInTile.cover = cover;
+        //this.whatsInTile.cover = cover;
         return true;
     }
 
