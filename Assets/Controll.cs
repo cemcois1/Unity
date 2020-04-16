@@ -14,15 +14,11 @@ public enum ButtonAction {
     Null
 }
 
-public class ButtonActionTool { 
-    
-}
-
 public class Controll : MonoBehaviour
 {
     private Vector2 lastObject;
     private Ray ray;
-    private RaycastHit2D hittedObject;
+    private RaycastHit hittedObject;
 
     private ButtonAction currentAction;
    
@@ -34,6 +30,7 @@ public class Controll : MonoBehaviour
 
     void Start()
     {
+
         currentAction = ButtonAction.Null;
         turn = new Turn(new string[] { "Chracter", "Hostile" });
 
@@ -48,10 +45,10 @@ public class Controll : MonoBehaviour
      
         if (Input.GetMouseButtonDown(0))
         {
-
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            hittedObject = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity);
-         
+
+            Physics.Raycast(transform.position,ray.direction, out hittedObject);            
+
             if (hittedObject.collider != null)
                 switch (currentAction)
                 {
@@ -88,7 +85,9 @@ public class Controll : MonoBehaviour
                         //this.highlightActionPoint();
 
                         break;
+
                 }
+
 
             else {
                 List<RaycastResult> graphRaycast = new List<RaycastResult>();

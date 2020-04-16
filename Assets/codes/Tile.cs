@@ -67,7 +67,7 @@ public class Tile : MonoBehaviour
         tile.transform.position = new Vector2(offsetX, offsetY);
         tile.transform.localScale = new Vector2(size, size);
 
-        tile.AddComponent<BoxCollider2D>();
+        tile.AddComponent<BoxCollider>();
 
         tile.AddComponent<MeshRenderer>().sharedMaterial = material;
 

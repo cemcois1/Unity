@@ -626,7 +626,6 @@ GameObject:
   - component: {fileID: 779465293}
   - component: {fileID: 779465292}
   - component: {fileID: 779465295}
-  - component: {fileID: 779465296}
   m_Layer: 5
   m_Name: RangeButton
   m_TagString: Untagged
@@ -745,32 +744,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cccf6862dbddfd14488ed4e79e1e8554, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!61 &779465296
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 779465290}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 50, y: 50}
-  m_EdgeRadius: 0
 --- !u!1 &915642792
 GameObject:
   m_ObjectHideFlags: 0
@@ -784,7 +757,6 @@ GameObject:
   - component: {fileID: 915642796}
   - component: {fileID: 915642795}
   - component: {fileID: 915642794}
-  - component: {fileID: 915642798}
   m_Layer: 5
   m_Name: FinishTurnButton
   m_TagString: Untagged
@@ -903,32 +875,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 915642792}
   m_CullTransparentMesh: 0
---- !u!61 &915642798
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 915642792}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 50, y: 50}
-  m_EdgeRadius: 0
 --- !u!1 &1072973607
 GameObject:
   m_ObjectHideFlags: 0
@@ -942,7 +888,6 @@ GameObject:
   - component: {fileID: 1072973610}
   - component: {fileID: 1072973609}
   - component: {fileID: 1072973612}
-  - component: {fileID: 1072973613}
   m_Layer: 5
   m_Name: MeleeButton
   m_TagString: Button
@@ -1061,32 +1006,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cccf6862dbddfd14488ed4e79e1e8554, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!61 &1072973613
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1072973607}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 50, y: 50}
-  m_EdgeRadius: 0
 --- !u!1 &1369495074
 GameObject:
   m_ObjectHideFlags: 0
@@ -1439,7 +1358,6 @@ GameObject:
   - component: {fileID: 1742131507}
   - component: {fileID: 1742131509}
   - component: {fileID: 1742131506}
-  - component: {fileID: 1742131510}
   m_Layer: 5
   m_Name: MoveButton
   m_TagString: Button
@@ -1558,32 +1476,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cccf6862dbddfd14488ed4e79e1e8554, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!61 &1742131510
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1742131504}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 50, y: 50}
-  m_EdgeRadius: 0
 --- !u!1 &1747702760
 GameObject:
   m_ObjectHideFlags: 0
@@ -1676,7 +1568,6 @@ GameObject:
   - component: {fileID: 1922802093}
   - component: {fileID: 1922802092}
   - component: {fileID: 1922802095}
-  - component: {fileID: 1922802096}
   m_Layer: 5
   m_Name: SpecialButton
   m_TagString: Untagged
@@ -1795,32 +1686,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cccf6862dbddfd14488ed4e79e1e8554, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!61 &1922802096
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1922802090}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 50, y: 50}
-  m_EdgeRadius: 0
 --- !u!1 &1949814135
 GameObject:
   m_ObjectHideFlags: 0
@@ -1834,7 +1699,6 @@ GameObject:
   - component: {fileID: 1949814138}
   - component: {fileID: 1949814137}
   - component: {fileID: 1949814140}
-  - component: {fileID: 1949814141}
   m_Layer: 5
   m_Name: SpecialButton
   m_TagString: Untagged
@@ -1953,32 +1817,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cccf6862dbddfd14488ed4e79e1e8554, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!61 &1949814141
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1949814135}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 50, y: 50}
-  m_EdgeRadius: 0
 --- !u!1 &1954828547
 GameObject:
   m_ObjectHideFlags: 0
