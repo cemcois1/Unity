@@ -44,6 +44,7 @@ public class Tile : MonoBehaviour
 {
     private bool isHighlishted = false;
     private bool isReachable;
+
     public Color defaultColor;
     private inTile whatsInTile;
     private Vector2 matrisCor;
@@ -112,62 +113,59 @@ public class Tile : MonoBehaviour
         return this.isReachable;
     }
 
-    public bool setInTile(Cover cover)
-    {
-        if (this.isTileFull())
+
+
+    public bool setInTile<Ty>(GameObject obj) {
+        if (!this.isTileFull())
+            if (typeof(Ty) == typeof(Cover))
+                this.whatsInTile.cover = obj;
+
+
+            else if (typeof(Ty) == typeof(Character))
+            {
+                this.whatsInTile.character = obj;
+            }
+
+            else
+                throw new System.InvalidOperationException();
+        else
             return false;
 
-        //this.whatsInTile.cover = cover;
         return true;
+
     }
 
-    public bool setInTile(GameObject character)
+    public GameObject getInTile<T>()
     {
-        if (this.isTileFull())
-            return false;
-
-        this.whatsInTile.character = character;
-        return true;
-    }
-
-    public T getInTile<T>()
-    {
-        System.Object tmp;
-
         if (typeof(T) == typeof(Cover))
         {
-            tmp = this.whatsInTile.cover;
-            return (T)tmp;
+            return this.whatsInTile.cover;
         }
 
         else if (typeof(T) == typeof(Character))
         {
-            tmp = this.whatsInTile.character;
-            return (T)tmp;
+            return this.whatsInTile.character;
         }
 
         throw new System.InvalidOperationException();
     }
 
-    public GameObject getInTileChracter() {
-        return this.whatsInTile.character;
-    }
 
-    public T getInTileWithRemove<T>()
+    public GameObject getInTileWithRemove<T>()
     {
-        System.Object tmp;
+        GameObject tmp;
         if (typeof(T) == typeof(Cover))
         {
             tmp = this.whatsInTile.cover;
             this.whatsInTile.cover = null;
-            return (T)tmp;
+            return tmp;
         }
 
         else if (typeof(T) == typeof(Character))
         {
             tmp = this.whatsInTile.character;
             this.whatsInTile.character = null;
-            return (T)tmp;
+            return tmp;
 
         }
 
