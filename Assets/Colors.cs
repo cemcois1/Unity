@@ -14,6 +14,7 @@ public class Colors : ScriptableObject
 
     public Color getColor(ButtonAction action) {
         switch (action) {
+            
             case (ButtonAction.Null):
                 return this.nullColor;
 

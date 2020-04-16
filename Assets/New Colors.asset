@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f1540d3b9546f545997a1084aa6bf90, type: 3}
   m_Name: New Colors
   m_EditorClassIdentifier: 
-  nullColor: {r: 1, g: 1, b: 1, a: 0}
-  moveColor: {r: 1, g: 0.2783019, b: 0.2783019, a: 1}
-  meleeColor: {r: 0.46226418, g: 0.37286404, b: 0.37286404, a: 1}
-  rangeColor: {r: 0.08294408, g: 0.23584908, b: 0.056737274, a: 1}
-  specialColor: {r: 0.0990566, g: 0.5278406, b: 1, a: 1}
-  special2Color: {r: 1, g: 0.98824716, b: 0.0141509175, a: 1}
-  finishTurnColor: {r: 0.033018887, g: 1, b: 0.34463537, a: 1}
+  nullColor: {r: 1, g: 1, b: 1, a: 0.17254902}
+  moveColor: {r: 1, g: 0.2783019, b: 0.2783019, a: 0.17254902}
+  meleeColor: {r: 0.46226418, g: 0.37286404, b: 0.37286404, a: 0.17254902}
+  rangeColor: {r: 0.08294408, g: 0.23584908, b: 0.056737274, a: 0.17254902}
+  specialColor: {r: 0.0990566, g: 0.5278406, b: 1, a: 0.17254902}
+  special2Color: {r: 1, g: 0.98824716, b: 0.0141509175, a: 0.17254902}
+  finishTurnColor: {r: 0.033018887, g: 1, b: 0.34463537, a: 0.17254902}
